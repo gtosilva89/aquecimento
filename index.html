@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Feira de Ciências • Aquecimento</title>
+<style>
+:root{--az:#003d76;--lar:#f39200;--fundo:#fff7ec;--card:#fff;--txt:#1c2733;--peq:#5b6875;--ok:#1d8a4e;--ruim:#c0392b;--meio:#e0a400;--borda:#e6dccd}
+*{box-sizing:border-box}body{margin:0;font-family:"Trebuchet MS",Segoe UI,Arial,sans-serif;background:var(--fundo) radial-gradient(circle at 10% 0,#ffe3b8 0,transparent 40%),radial-gradient(circle at 90% 10%,#d6ecff 0,transparent 40%);color:var(--txt);min-height:100vh}
+.topo{display:flex;gap:8px;align-items:center;padding:8px 16px;background:var(--az);color:#fff}.topo b{font-size:18px}.topo span{flex:1}
+.topo button{background:#ffffff22;border:1px solid #ffffff55}
+#app{max-width:1000px;margin:0 auto;padding:16px}
+button{font:inherit;border:0;border-radius:10px;padding:9px 15px;background:var(--az);color:#fff;cursor:pointer;font-weight:bold}button:hover{filter:brightness(1.1)}button:disabled{opacity:.5;cursor:default}.op:disabled{opacity:1;cursor:default}
+button.sec{background:#fff;color:var(--az);border:2px solid var(--az)}button.grande{background:var(--lar);font-size:19px;padding:12px 22px;box-shadow:0 4px 0 #b86e00}
+input,textarea,select{font:inherit;padding:9px;border:2px solid var(--borda);border-radius:8px;width:100%;background:#fff}textarea,.sc{font-family:Consolas,"Courier New",monospace}
+label{display:block;font-weight:bold;margin:8px 0}
+.card{background:var(--card);border-radius:18px;padding:20px;box-shadow:0 6px 20px #0001;margin:12px 0;border:2px solid var(--borda)}
+.centro{text-align:center;justify-content:center}.linha{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:10px 0}
+.peq{color:var(--peq);font-size:14px}.hero{text-align:center}.hero h1{font-size:52px;margin:10px 0;color:var(--az);text-shadow:3px 3px 0 #ffd28a}
+.faixa{display:inline-block;background:var(--lar);color:#fff;padding:4px 14px;border-radius:20px;font-weight:bold}.sub{font-size:19px;max-width:720px;margin:0 auto}
+.entrar{max-width:520px;margin:18px auto;text-align:left}.aviso{background:#fff1d6;border-left:5px solid var(--lar);padding:8px;border-radius:6px}.ok-envio{color:var(--ok);font-weight:bold}
+.hud{display:flex;gap:16px;align-items:center;background:#fff;border-radius:14px;padding:10px 16px;border:2px solid var(--borda);flex-wrap:wrap}.hudnv{flex:1;min-width:220px}.nv{font-weight:bold;color:var(--az)}
+.hudc{display:flex;gap:10px;align-items:center;font-size:20px;flex-wrap:wrap}.envio{font-size:13px;color:var(--peq)}.combo{background:#ffe1c2;color:#b34700;border-radius:12px;padding:2px 8px;font-weight:bold}
+.xpbar{height:12px;background:#eee;border-radius:8px;overflow:hidden;margin:4px 0;min-width:120px}.xpbar i{display:block;height:100%;background:linear-gradient(90deg,var(--lar),#ffc400)}
+.mapa{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:14px 0}
+.estande{background:#fff;border-radius:18px;padding:16px;border:3px dashed var(--lar);text-align:center;position:relative}.estande.fim{border-style:solid;border-color:var(--ok)}.estande.trancado{opacity:.6;border-color:#aaa}
+.estande .ic{font-size:54px}.estande h3{margin:6px 0;color:var(--az)}
+.pontos{display:flex;gap:5px;justify-content:center;margin:8px 0}.pontos i{width:14px;height:14px;border-radius:50%;background:#ddd;display:inline-block}.pontos i.ok{background:var(--ok)}.pontos i.meio{background:var(--meio)}.pontos i.tent{background:#f6b4ab}
+.pontos.grandes i{width:22px;height:22px;cursor:pointer}.pontos i.aqui{outline:3px solid var(--az);outline-offset:2px}
+.tag{background:#e6f0fa;color:var(--az);border-radius:10px;padding:3px 10px;font-weight:bold;font-size:14px}.tag.ind{background:#fff0dc;color:#9a5200}
+pre{white-space:pre-wrap}pre.cod,pre.ctx{background:#1e2a36;color:#f2f6fa;padding:14px;border-radius:12px;font-family:Consolas,"Courier New",monospace;font-size:17px;overflow:auto}pre.ctx{background:#f3f6f9;color:#1c2733;font-size:15px;border:1px solid #d6dee6}
+pre.num span{display:inline-block;width:28px;color:#8aa1b6}
+.ops{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:640px){.ops{grid-template-columns:1fr}.hero h1{font-size:36px}}
+.op{background:#fff;color:var(--txt);border:2px solid var(--borda);text-align:left;font-weight:normal;font-size:17px;padding:12px}.op b{background:var(--az);color:#fff;border-radius:6px;padding:0 7px;margin-right:6px}
+.op.certa{border-color:var(--ok);background:#e3f6eb}.op.errada{border-color:var(--ruim);background:#fde7e4;text-decoration:line-through}
+.fb{border-radius:12px;padding:12px;margin:10px 0;background:#f3f6f9}.fb.bom{background:#e3f6eb;border-left:6px solid var(--ok)}.fb.ruim{background:#fde7e4;border-left:6px solid var(--ruim)}
+details{margin:8px 0}summary{cursor:pointer;font-weight:bold;color:var(--az)}
+table{border-collapse:collapse;width:100%}td,th{border:1px solid var(--borda);padding:6px 8px;text-align:left;vertical-align:top}th{background:#eef3f8}
+table.mini{max-width:760px;margin:10px auto}.bugs td:first-child,.bugs td:nth-child(2){width:150px}
+.medalha{font-size:90px;animation:pula 1s ease}@keyframes pula{0%{transform:scale(.2)}70%{transform:scale(1.2)}100%{transform:scale(1)}}
+.selo{display:inline-block;min-width:40px;text-align:center;border-radius:8px;padding:2px 8px;font-weight:bold}.selo.A{background:#c6efce;color:#11602f}.selo.PA{background:#ffeb9c;color:#7a5b00}.selo.NA{background:#ffc7ce;color:#8a1020}
+.cmd{border-top:1px dashed var(--borda);padding-top:8px}.lado{display:grid;grid-template-columns:1fr 1fr;gap:10px}.modelo{background:#eef7ff;border-radius:8px;padding:8px}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#1c2733;color:#fff;padding:12px 20px;border-radius:12px;z-index:99;font-weight:bold;max-width:90vw}
+.festa{position:fixed;inset:0;pointer-events:none;z-index:98;overflow:hidden}.festa span{position:absolute;top:-40px;font-size:30px;animation:cai 2s linear forwards}@keyframes cai{to{transform:translateY(110vh) rotate(360deg)}}
+.modal{position:fixed;inset:0;background:#0007;z-index:90;display:flex;align-items:flex-start;justify-content:center;padding:20px;overflow:auto}.larga{max-width:900px;width:100%}
+.abas{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.aba{background:#eef3f8;color:var(--az)}.aba.on{background:var(--az);color:#fff}.onde{background:#fff0dc;padding:8px;border-radius:8px}
+#apres{position:fixed;inset:0;z-index:95;background:#fff7ec}.slide{height:100vh;display:flex;flex-direction:column;padding:2vh 4vw}
+.sl-topo{display:flex;justify-content:space-between;color:#fff;background:var(--az);margin:-2vh -4vw 2vh;padding:1.2vh 4vw;font-size:2vh}
+.slide h1{font-size:6vh;color:var(--az);margin:1vh 0}.sl-sub{font-size:4vh;color:var(--lar);margin:0}.sl-corpo{flex:1;overflow:auto;font-size:3.2vh}
+.grande-t{font-size:3.4vh}.big li{font-size:3.4vh;margin:1vh 0}pre.cod.g{font-size:2.9vh}.grade2{display:grid;grid-template-columns:1fr 1fr;gap:3vw;align-items:start}
+.bloco{background:#fff;border-radius:2vh;padding:2vh;border:3px solid var(--lar)}.bloco h3{margin-top:0;color:var(--az)}
+.agenda td{font-size:3.3vh;padding:1.2vh}.link-g{font-size:4vh;font-weight:bold;color:var(--az);word-break:break-all}
+.placar td{font-size:3.6vh;padding:1vh 2vh}.notas{background:#1c2733;color:#fff;padding:1.5vh;border-radius:1vh;font-size:2.3vh}
+.sl-nav{display:flex;gap:8px;justify-content:center;padding-top:1vh}
+</style></head><body>
+<div class="topo"><b>🎪 Feira de Ciências</b><span></span><button id="bApres">📽️ Apresentação</button><button id="bProf">🔒 Área do professor</button></div>
+<div id="app"></div>
+<script>
+const CHAVE_PUBLICA='MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAx5blW/FZqezUw9FDUjw5nlFvr8Ft+Ap+bgkt11PW1c7ZovyT+c98/yGxoWqRhahA/G0i4/Bpxvmp8tEKwFns5b7Eb5cUQ4Lq6fMzY11RurDnVkDkKYKmjFjuZh1nEsZTki6XT+h0U3nv1VQcRtNYFjjtpHA4sEsrnVcr1iJhfZMhhgK3/wox1kUx4zj1j31MydD/XOjm+urB5FUJV7NvpqGly7BgPxB1728KdmfW+Zj8BuDg/rw7xV4+5x22A8YW8h5do0b6t7ABV+OYrJYy4z/2t4kTQYa17ho+M4K4lXX3WIX7a+z6e99/4DTFgIgbY2IEofLcrU63rlpsb7/ycQIDAQAB';
+const COFRE={"s":"wyb//c1UNGgfnoRHwQsXCg==","i":"qVjfuLjNVlgYBNhL","c":"e0bpsHhHTh6kR2vSjOdJWKncDTtuC0vUddr8AkBZ6lViH9CG91T9Z996t7OuI0YKOh2HRNiMgS5/Nd0xiake1yV3u4RH9VcoqykZdqcnHCgkoqZBk4CIr4jxEOJrtyBGEh+1Aeko17+hTSqqAIaKg843TItq87dwEnU5Rh4NgpLrc704YAsWTdYqOmtlYHFt3Q/LdhUbwqgNWI6xWV9I1VNo70SSwyEr0h1iEmt+JlO7JZQj9bhuc8KTwryPsI5BqhvyFtmX+lSoGYkTM6IxhdkbTDhd9hjBzlQ5oDuj4W+y1imj8pwFR3Z6ZoQh5h3a30G7Jsy46QJTfK2R+gSYL2mAn9glmyZt+9EzJ4jgiouszDkBwjhxQB8f6/87DAlWD6sbKzN3D+mXbqA3lK6RtaTZ+gEneAWTj6RDTBqmybSYAe8JqQpeZelKVCMIRWiLcxbjEZPRps1smboy8hYsfVRiMq4bwmsFlHDzSSnpIlnKtKu3SKfBGHKiw5cvOOptZe+Mb1jMy5kfNuXYhZ12Hv+ReznQFxLhNN17TPLsgteVTtyOretugQFIa2DrqAAOWTteEevC6tj0JVD/mfU9xP63PFrGCXiwXfD+674pwxkAv04h1IbClD4c9/nvgQhsc8GDZzgo5E+i8w87Naj5cg0KcGB4ARkkFY0RsgUostMzozSHaQRiP1lkSu/LqUumfpehbNhYWyf8binIBBBpKSh6dTC2+IXHb2YyztLUgWVe5iBJIadnUjynNhyoGgEkKKE2rolkj/L4MaJZQ3qAHqN0uQzO7rvSjei1ZVoWWxcQVFkYznM2PUooT0W3LLVcHH02eXUyT8tqbd0XjV1ZFgWc+fQvqT6ChWbHEeB+LolHb1TiiqDZ169NGwCcaEBTkBtCAXkrPV0s9ex24P8yZgpiji5QpJos/D+txN2sFuSrClCyPDRHanP+zC4Ruux2duvRWaZ2kRuJX+6LoAeh9/fMDdLMflZT5S64ErbXJaCQNmhSQ6RDTMlVD2h9WhGzWNO11Bu6UDW/6E607tEbg+DKWfrDPfkl1vfmT5PHyn7xQeAd9SCdbvFdAJqAB+LoYpJI/+dfOuIf81c27m5iIbkIrafg2kqPGlR7ZgUhu7U6dIkmZdc9Tn+tj6TGNfKcCHELgCXiQCylPQNou5y4CiqczaieWS4QwSPU8znJLbKmkdQgy77m1uQmowkHlmcVG0+DE2gfmTqP3pJYcj2pYzBiYorkd1h8k6LtdzRVQDvbJZJmR0kTxYHG/11HIm1YCdwv97fWoYw/jdAMkLPOZTWUr5erpfzGZaM9h/DbtA6Hgp/tAREtf3MS44fSb1nxT6q0N32e8rYofNFcQm5rIW8AXn0Hsx6ju7gvnA5AZ9esEW1+PuwntcRDGLi/q64BMVxAskJor3iOWXVtbSLElPWkC7PsbUT3RAdCm4UC+bNaWCzsU+7sTXg6YO95poGjGCwFR0gXsnTPnIUNbvdp1Cow7HsnVlEdYIIR8XDzU/TW6w3ZQyy2idEq173NNyDdGUi3gbUxCzO0Zx87GZHMkJpjZWTIsmjWFeVsW1jdmpq5AN4VekJmr3UGWbzlBhl8Y/USVq9UMzclQcA2ygnkUDNC3Qb5pOpDbfokwCzpqA7ePQqfNHz1aUq71fEIppwSLU3NwacBMiPP2X30KFQLjL25NQCIl3TJTC6e6gP4ckeOwZp5cEP48ILMNorYN7CUWTsj/xJH/ymU2opSSAmbROWsXQkgmMBvfTYrKOA4PpeRLjluCaNKj/ZdnASfdglGzGfIvEtK41yGf4wP/4EqTeKUGHxVyvR2uVnDagMAoNzychRWSGn0tgHo1SolVnUiWHWovGIhUNp7IIPrZyM7243McJZR/Ihtw3XZICoy2kBryP+y/UFv6LBZTSdPxvi3T0VfB6Qxdy1RZ+zLyGQBTGXD6adkDE4Xb4wqrb5uPVYN+Z7Z99WVvY37te35L98wXOjbNNMnhC+T62yLVrrWGXBgNbmwypc9K2fbtyvXZhiyD9lukp3PeMKEBAaJDV+rajy4X4sFn3wqROa4vJiSqB2f9cFL5Tco0qpq9rriV5M15/yZ6YUe0t6zmNLNZY7qmuiAF/aZ8WqVtZ0LeC63GYjOqVZm6qyQ0rLDxSEdZRUTcMVo5LaQXWk/mfD88VSGeeiy1Mf0yRGQg8TIhmXLhfsA4ognMQLmgFZOWXeSKzX7IaZA6i1+WeoN07TsWqXuHYLtOtR+guzjbjHp34lutyFvW8yCQW2sMbhTkm1hzdfpzNPcrT2EIpzh7f0i2mE/F9ud8ZRh4PCLrQ1K38PzJXsZzXIpVOZm9rEdb7V5HYo7uy1fqYDkPn9J6oVtgg8THixqcH98lhiQiPoy6VUj2KgTqtYJFK4XsFlJZC1Gewjfn1M6GhJJSv37ZDvR8t9oBsrHo/xgXQpFxID6yFXI5pQklYECPJWztwMAR/87eS3ykMeYRNTAUzsMJBP25vC8OdfLWk3zKSn58oqhTAPTwKrSrjz7RB/AvwOciTzRfPvObH8isxdNjFiNHmB3S/SEBmIg9v1jJnBi9opIbFiH7nWJfU4i8/3EH+I/6H8gcRnH9plOG8IR0w2gPtA6u0aui1qJ53Ew5WvBiiF9CLunyxXgYUnueYnxFbYVhnA7OkoURCP5TGccg9LVLq5VVR0bbgEAcumEeT+t5Zu30Or51VkjAUg65KCJ3uI1+fjmakBkpPvC0HgvtE/uy65bVu5HNqeVzDCn2kpnTcFlprQC7k8/HTSmqIztESmUZxFYoMSm5c8MmJR+rTIZfWTfM15GhUVQxJi9RPfuOew3KscJXDZu8HtIkZ9CoY/UF55Voct0dbKZ6GQzpZbTc1vzTWEZzXuVuVETP6dEIQu66QvdBuofywjzQgJLsYz9YasYjKSor45JtKon2LD5anw+7TgrK0Jo6itr5X51PIlpbnF/Qhi0OWQIeVH7UXV8IEj9b9J9L3lIvS+a2XydUC4urC/aTwtQgAQ3EDd83MmXpA9e"};
+// ===================== DADOS: Feira de Ciências (aquecimento 26/11, turma 202600029) =====================
+// 20 perguntas: Python (ind. 3 e 4, avaliação de sexta 27/11) e Banco de dados (ind. 4, 5 e 6, sábado 28/11).
+// A resposta certa fica embaralhada em "k" (ver certa()). As respostas modelo do desafio ficam CIFRADAS (build.js).
+const LMS='https://senac-lms.pages.dev/';
+const DF=`   titulo    turma  votos
+0  Robô      1º A      14
+1  Horta     1º A       9
+2  Chatbot   1º B      21
+3  Detector  1º B       6
+4  Jogo      2º A      12`;
+const TAB=`projetos
+ id | titulo   | turma_id | votos
+----+----------+----------+------
+  1 | Robô     |    1     |  14
+  2 | Horta    |    1     |   9
+  3 | Chatbot  |    2     |  21
+  4 | Detector |    2     |   6
+  5 | Jogo     |    3     |  12
+
+turmas
+ id | nome
+----+------
+  1 | 1º A
+  2 | 1º B
+  3 | 2º A`;
+// Onde consultar (LMS + resumo dentro do jogo)
+const CONSULTA={
+ erro:{t:'Erros no Python',onde:'LMS • UC05 Python • aulas A43, A46 e A49 (funções e "ler o erro")',
+  html:`<p>O Python mostra o <b>tipo do erro na última linha</b> e a <b>linha</b> onde parou.</p>
+<table><tr><th>Erro</th><th>Quando acontece</th><th>Exemplo (biblioteca)</th></tr>
+<tr><td>SyntaxError</td><td>erro de escrita: falta <code>:</code>, <code>)</code> ou aspas</td><td><code>if livros > 3</code></td></tr>
+<tr><td>NameError</td><td>nome que não existe (digitou errado)</td><td><code>print(livrso)</code></td></tr>
+<tr><td>TypeError</td><td>mistura de tipos: texto + número</td><td><code>"3" + 1</code></td></tr>
+<tr><td>ValueError</td><td>o tipo está certo, o valor não</td><td><code>int("três")</code></td></tr>
+<tr><td>IndexError</td><td>posição que não existe na lista</td><td><code>lista[10]</code></td></tr>
+<tr><td>Erro de lógica</td><td>roda sem mensagem, mas o resultado sai errado</td><td>esqueceu os parênteses na conta</td></tr></table>
+<p><b>Receita:</b> ler a última linha → ir na linha indicada → corrigir UMA coisa → rodar e testar de novo.</p>
+<p><code>input()</code> sempre devolve <b>texto</b>. Para fazer conta: <code>int(input("..."))</code>.</p>`},
+ pandas:{t:'pandas e gráfico',onde:'LMS • UC05 Python • aulas A37 e A40 (pandas e groupby)',
+  html:`<pre>import pandas as pd
+livros = pd.DataFrame({"genero": ["HQ", "HQ", "Terror"],
+                       "emprestimos": [5, 3, 8]})
+print(livros.shape)      # (3, 2) → (linhas, colunas)
+print(livros.head())     # primeiras linhas
+livros[livros["emprestimos"] > 4]            # filtro: só as linhas que passam
+livros.groupby("genero")["emprestimos"].sum()  # junta por gênero e soma</pre>
+<pre>import matplotlib.pyplot as plt
+plt.bar(["HQ", "Terror"], [8, 8])
+plt.title("Empréstimos")
+plt.show()               # abre o gráfico</pre>`},
+ sql:{t:'Consultas SQL',onde:'LMS • UC08 Banco de dados • Plantão da Vigilância, dias 1 a 3 (SELECT, WHERE, GROUP BY, JOIN)',
+  html:`<pre>SELECT titulo FROM livros WHERE ano > 2000;          -- filtra linhas
+SELECT genero, COUNT(*) FROM livros GROUP BY genero;  -- conta por grupo
+SELECT genero, SUM(paginas) FROM livros GROUP BY genero;
+SELECT titulo FROM livros ORDER BY ano DESC LIMIT 3;  -- 3 mais novos
+SELECT l.titulo, a.nome
+FROM livros l JOIN autores a ON a.id = l.autor_id;    -- liga as tabelas
+UPDATE livros SET ano = 2020 WHERE id = 7;            -- SEM WHERE muda TODAS!</pre>`},
+ perm:{t:'Usuários e permissões',onde:'LMS • UC08 Banco de dados • aulas A47 e A61 (CREATE ROLE, GRANT, REVOKE)',
+  html:`<pre>CREATE ROLE leitor_7 LOGIN PASSWORD 'senha';
+GRANT SELECT ON livros TO leitor_7;     -- só pode LER
+GRANT SELECT, INSERT ON livros TO bibliotecaria;
+REVOKE SELECT ON livros FROM leitor_7;  -- tira a permissão</pre>
+<p>Se o usuário tentar algo que não recebeu (ex.: DELETE só com SELECT), o PostgreSQL responde <b>permission denied</b>.</p>
+<p><b>Menor privilégio:</b> cada usuário recebe só a permissão de que precisa para o trabalho dele.</p>`},
+ bkp:{t:'Backup e restauração',onde:'Backup não tem aula própria no LMS: use este resumo e o Manual de BD feito à mão (13/11)',
+  html:`<pre>CREATE TABLE livros_bkp AS SELECT * FROM livros;   -- cópia de segurança
+-- alguém apagou o livro 7 por engano:
+INSERT INTO livros SELECT * FROM livros_bkp WHERE id = 7;  -- restaura</pre>
+<p>No DBeaver/pgAdmin também dá para fazer o backup do banco inteiro (pg_dump) e restaurar (pg_restore).</p>`}
+};
+// f = estande (py | bd), ind = indicador, g = assunto de consulta, k = resposta embaralhada
+const Q=[
+ {f:'py',ind:'Python 3',g:'erro',p:'Que erro aparece?',c:'print("Feira de Ciências"',o:['SyntaxError','NameError','TypeError','ValueError'],k:1,e:'Faltou fechar o parêntese: o Python nem começa a rodar. Erro de escrita = SyntaxError.'},
+ {f:'py',ind:'Python 3',g:'erro',p:'O aluno digitou 5. Que erro aparece?',c:'votos = input("Votos: ")\ntotal = votos + 1',o:['ValueError','TypeError','IndexError','Nenhum'],k:1,e:'input() devolve texto. Texto + número = TypeError. Correção: int(input(...)).'},
+ {f:'py',ind:'Python 3',g:'erro',p:'Que erro aparece?',c:'votos = int("dez")',o:['NameError','SyntaxError','ValueError','ZeroDivisionError'],k:1,e:'int() só converte texto que tem número. "dez" não vira número: ValueError.'},
+ {f:'py',ind:'Python 3',g:'erro',p:'Que erro aparece?',c:'projetos = ["Robô", "Horta", "Chatbot"]\nprint(projetos[3])',o:['KeyError','IndexError','TypeError','Mostra "Chatbot"'],k:3,e:'Os índices vão de 0 a 2. O índice 3 não existe: IndexError.'},
+ {f:'py',ind:'Python 3',g:'erro',p:'Apareceu esta mensagem. Por onde começar?',c:'Traceback (most recent call last):\n  File "feira.py", line 7\nNameError: name \'totl\' is not defined',o:['Apagar o arquivo e começar de novo','Ler a última linha (tipo do erro) e ir na linha 7','Pedir para a IA reescrever tudo','Mudar várias linhas ao mesmo tempo'],k:2,e:'Tipo do erro na última linha, linha onde parou, causa, corrigir UMA coisa, rodar e testar.'},
+ {f:'py',ind:'Python 3',g:'erro',p:'A média de 8 e 6 deveria ser 7, mas saiu 11. Qual a correção?',c:'a = 8\nb = 6\nmedia = a + b / 2\nprint(media)',o:['media = (a + b) / 2','media = a + b // 2','media = a / b + 2','Não tem erro'],k:0,e:'Erro de lógica: roda sem mensagem. A divisão vem antes da soma, então faltam os parênteses.'},
+ {f:'py',ind:'Python 4',g:'pandas',df:1,p:'O que mostra df.shape?',c:'print(df.shape)',o:['(5, 3)','(3, 5)','15','5'],k:3,e:'shape = (linhas, colunas): 5 projetos e 3 colunas.'},
+ {f:'py',ind:'Python 4',g:'pandas',df:1,p:'O que faz esta linha?',c:'df[df["votos"] > 10]',o:['Apaga os projetos com mais de 10 votos','Mostra só os projetos com mais de 10 votos','Soma os votos','Ordena os votos'],k:3,e:'É um filtro: ficam só Robô, Chatbot e Jogo.'},
+ {f:'py',ind:'Python 4',g:'pandas',df:1,p:'Quanto aparece para o 1º B?',c:'df.groupby("turma")["votos"].sum()',o:['21','27','2','48'],k:2,e:'groupby junta as linhas da mesma turma e soma: 21 + 6 = 27.'},
+ {f:'py',ind:'Python 4',g:'pandas',p:'Depois do plt.bar, o que falta para o gráfico aparecer?',c:'import matplotlib.pyplot as plt\nplt.bar(["1º A", "1º B", "2º A"], [23, 27, 12])',o:['plt.show()','print(plt)','df.head()','Nada: já aparece'],k:0,e:'plt.show() abre a janela do gráfico.'},
+ {f:'bd',ind:'BD 5',g:'sql',tab:1,p:'Quais títulos aparecem?',c:'SELECT titulo FROM projetos\nWHERE votos > 10;',o:['Robô, Chatbot e Jogo','Horta e Detector','Todos','Só o Chatbot'],k:3,e:'WHERE filtra as linhas: 14, 21 e 12 passam de 10.'},
+ {f:'bd',ind:'BD 5',g:'sql',tab:1,p:'Qual consulta mostra quantos projetos cada turma tem?',c:'',o:['SELECT turma_id, COUNT(*) FROM projetos GROUP BY turma_id;','SELECT COUNT(*) FROM projetos;','SELECT * FROM projetos ORDER BY turma_id;','SELECT turma_id FROM projetos WHERE COUNT(*) > 1;'],k:2,e:'GROUP BY junta por turma e COUNT(*) conta as linhas de cada grupo.'},
+ {f:'bd',ind:'BD 5',g:'sql',tab:1,p:'O que esta consulta mostra?',c:'SELECT titulo, votos FROM projetos\nORDER BY votos DESC\nLIMIT 3;',o:['Os 3 projetos mais votados','Os 3 menos votados','Os 3 primeiros cadastrados','Só projetos com 3 votos'],k:1,e:'DESC = do maior para o menor; LIMIT 3 = só as 3 primeiras linhas.'},
+ {f:'bd',ind:'BD 5',g:'sql',tab:1,p:'Para mostrar o NOME da turma junto do título, o que entra no espaço?',c:'SELECT p.titulo, t.nome\nFROM projetos p\n______ turmas t ON t.id = p.turma_id;',o:['JOIN','WHERE','GROUP BY','ORDER BY'],k:0,e:'JOIN liga as duas tabelas pela chave: projetos.turma_id = turmas.id.'},
+ {f:'bd',ind:'BD 5',g:'sql',tab:1,p:'O que acontece?',c:'UPDATE projetos SET votos = 0;',o:['Zera só o primeiro projeto','Zera os votos de TODOS os projetos','Dá erro','Apaga a tabela'],k:0,e:'Sem WHERE, o UPDATE (e o DELETE) vale para todas as linhas. Sempre confira o WHERE.'},
+ {f:'bd',ind:'BD 4',g:'perm',p:'O jurado tenta apagar um projeto. O que acontece?',c:'GRANT SELECT ON projetos TO jurado_3;\n-- conectado como jurado_3:\nDELETE FROM projetos WHERE id = 1;',o:['Apaga o projeto 1','permission denied (permissão negada)','Apaga a tabela inteira','Pede a senha de novo'],k:3,e:'O jurado só recebeu SELECT (leitura). Testado no PostgreSQL: permission denied for table projetos.'},
+ {f:'bd',ind:'BD 4',g:'perm',p:'O que é o princípio do menor privilégio?',c:'',o:['Cada usuário recebe só a permissão de que precisa','Todo mundo é administrador','Ninguém pode ler nada','A senha mais curta possível'],k:1,e:'O jurado precisa ler os votos, não apagar. Por isso recebe só SELECT.'},
+ {f:'bd',ind:'BD 4',g:'perm',p:'Qual comando TIRA a permissão do jurado?',c:'',o:['REVOKE SELECT ON projetos FROM jurado_3;','DROP TABLE projetos;','DELETE jurado_3;','GRANT NONE TO jurado_3;'],k:0,e:'GRANT dá a permissão; REVOKE tira.'},
+ {f:'bd',ind:'BD 6',g:'bkp',tab:1,p:'O que este comando faz?',c:'CREATE TABLE projetos_bkp AS\nSELECT * FROM projetos;',o:['Uma cópia de segurança da tabela','Apaga a tabela','Cria uma tabela vazia','Dá permissão'],k:3,e:'Cria projetos_bkp com todas as linhas: é um backup simples.'},
+ {f:'bd',ind:'BD 6',g:'bkp',tab:1,p:'Alguém apagou o projeto 4. Como restaurar a partir da cópia?',c:'',o:['INSERT INTO projetos SELECT * FROM projetos_bkp WHERE id = 4;','DELETE FROM projetos_bkp;','UPDATE projetos SET id = 4;','DROP TABLE projetos_bkp;'],k:2,e:'Copia a linha de volta da tabela de backup. Testado no PostgreSQL.'},
+];
+// resposta certa: índice embaralhado por posição (não é segredo forte; é só para não ficar óbvio no código)
+const certa=i=>((Q[i].k-(i*3+1))%4+8)%4;
+const ESTANDES=[
+ {id:'py',nome:'Estande 1: Laboratório de Python',ic:'🐍',desc:'Depuração (ind. 3) e pandas/gráfico (ind. 4). Cai na sexta, 27/11.',qs:[0,1,2,3,4,5,6,7,8,9]},
+ {id:'bd',nome:'Estande 2: Banco de dados da Feira',ic:'🗄️',desc:'Consultas (ind. 5), permissões (ind. 4) e backup (ind. 6). Cai no sábado, 28/11.',qs:[10,11,12,13,14,15,16,17,18,19]},
+ {id:'des',nome:'Estande 3: Desafio do Júri',ic:'🏆',desc:'Caça aos erros e 4 comandos para escrever. Abre depois dos estandes 1 e 2.'}
+];
+// Desafio A: caça aos erros (o total certo é 44 + X)
+const BUG_COD=['votos = [14, 9, 21]','extra = input("Votos extras: ")','total = 0','for v in votos','    total = v','total = total + extra','print("Total:", totl)'];
+const TIPOS=['SyntaxError','NameError','TypeError','ValueError','IndexError','Erro de lógica'];
+// linha → tipo aceito e o que a correção precisa ter (TypeError vale na linha 2 ou 6)
+const BUGS=[
+ {l:[4],t:'SyntaxError',re:/for\s+v\s+in\s+votos\s*:/},
+ {l:[5],t:'Erro de lógica',re:/total\s*=\s*total\s*\+\s*v\b|total\s*\+=\s*v\b|total\s*=\s*v\s*\+\s*total/},
+ {l:[2,6],t:'TypeError',re:/int\s*\(/},
+ {l:[7],t:'NameError',re:/print\s*\(.*\btotal\s*\)/}
+];
+// Desafio B: comandos (X = número pessoal do aluno)
+const CMDS=[
+ {ind:'Python 4',p:'pandas: mostre o total de votos por turma (o df tem as colunas titulo, turma e votos).',ph:'df.',
+  ok:(t,X)=>/groupby\s*\(\s*["']turma["']\s*\)/.test(t)&&/votos/.test(t)&&/\.sum\s*\(\s*\)/.test(t),dica:'Use groupby pela coluna turma, escolha a coluna votos e some.'},
+ {ind:'BD 5',p:'SQL: mostre o total de votos por turma na tabela projetos (colunas id, titulo, turma_id, votos).',ph:'SELECT ...',
+  ok:(t,X)=>/select/i.test(t)&&/sum\s*\(\s*(\w+\.)?votos\s*\)/i.test(t)&&/from\s+projetos/i.test(t)&&/group\s+by/i.test(t),dica:'SELECT com SUM(votos), FROM projetos e GROUP BY pela turma.'},
+ {ind:'BD 4',p:X=>`SQL: o usuário jurado_${X} só pode LER a tabela projetos.`,ph:'GRANT ...',
+  ok:(t,X)=>new RegExp(`grant\\s+select\\s+on\\s+(table\\s+)?projetos\\s+to\\s+"?jurado_${X}\\b`,'i').test(t),dica:X=>`GRANT + a permissão de leitura + ON projetos + TO jurado_${X} (o seu número é ${X}).`},
+ {ind:'BD 6',p:'SQL: faça uma cópia de segurança da tabela projetos.',ph:'CREATE TABLE ...',
+  ok:(t,X)=>/create\s+table\s+\w+\s+as\s+select\s+\*\s+from\s+projetos/i.test(t),dica:'CREATE TABLE nome_da_copia AS SELECT tudo FROM projetos.'}
+];
+const FATOR=[1,0.7,0.4];// pontos por tentativa (1ª, 2ª, 3ª)
+const NIVEIS=[[0,'Visitante','🎟️'],[700,'Expositor','🧪'],[1500,'Monitor','🔬'],[2300,'Jurado','🏅'],[3100,'Campeão da Feira','🏆']];
+
+// ===================== MOTOR =====================
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const app=$('#app');
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const nrm=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+const normNome=s=>nrm(s).replace(/[^a-z0-9]/g,'');
+function numeroPessoal(nome){let h=7;for(const c of normNome(nome))h=(h*31+c.charCodeAt(0))%9973;return 2+h%8}
+function titulo(n){return n.trim().replace(/\s+/g,' ').toLowerCase().replace(/(^|\s)(\S)/g,(m,a,b)=>a+b.toUpperCase()).replace(/\s(Da|De|Do|Das|Dos|E)(?=\s)/g,m=>m.toLowerCase())}
+function toast(t,ms=2600){const d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),ms)}
+function rng(seed){let x=seed||1;return()=>{x=(x*16807)%2147483647;return(x-1)/2147483646}}
+function embaralhar(a,r){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function lsGet(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+const CH='feira26_',JOGO='feira26';
+let S=null;
+function novoEstado(nome){return{v:1,jogo:JOGO,sid:Math.random().toString(36).slice(2,10),nome,X:numeroPessoal(nome),ini:Date.now(),ts:Date.now(),r:{},comb:0,maxComb:0,lms:0,
+ dA:{tent:0,pts:0,acertos:0,linhas:[{},{},{},{}],total:'',totOk:false,totTent:0,totPts:0},dB:CMDS.map(()=>({t:'',tent:0,ok:false,pts:0})),col:0,sus:[]}}
+// O progresso fica só na memória desta aba (sessionStorage, apagado ao fechar) para não perder se a página recarregar.
+// As respostas vão para o repositório (pasta respostas/), cifradas: só a senha do professor abre.
+function salvar(){S.ts=Date.now();S.sujo=true;try{sessionStorage.setItem(CH+'atual',JSON.stringify(S))}catch(e){}}
+function ordemOpcoes(i){return embaralhar([0,1,2,3],rng(numeroPessoal(S.nome)*101+i*7919+13))}
+// ---------- pontuação ----------
+function xpQ(s){return Object.values(s.r).reduce((a,r)=>a+(r.xp||0),0)}
+function xpTotal(s){return xpQ(s)+(s.dA.pts||0)+(s.dA.totPts||0)+s.dB.reduce((a,b)=>a+(b.pts||0),0)}
+function nivel(xp){let n=NIVEIS[0],prox=null;for(let i=0;i<NIVEIS.length;i++){if(xp>=NIVEIS[i][0]){n=NIVEIS[i];prox=NIVEIS[i+1]||null}}return{n,prox}}
+const feito=(s,i)=>{const r=s.r[i];return!!(r&&(r.ok||r.a.length>=2))};
+const primeira=(s,i)=>{const r=s.r[i];return!!(r&&r.ok&&r.a.length===1)};
+function estandeFeito(s,e){return e.qs.every(i=>feito(s,i))}
+function desafioFeito(s){return(s.dA.acertos===4||s.dA.tent>=3)&&(s.dA.totOk||s.dA.totTent>=3)&&s.dB.every(b=>b.ok||b.tent>=3)}
+function medalha(s,e){const n=e.qs.filter(i=>primeira(s,i)).length/e.qs.length;return n>=.9?['🥇','ouro']:n>=.7?['🥈','prata']:n>=.5?['🥉','bronze']:['🎗️','participação']}
+const CONQ=[
+ ['🐞','Caça-bugs','Acertou de primeira todas as perguntas de erros (1 a 6)',s=>[0,1,2,3,4,5].every(i=>primeira(s,i))],
+ ['🐼','Domador do pandas','Acertou de primeira as de pandas e gráfico (7 a 10)',s=>[6,7,8,9].every(i=>primeira(s,i))],
+ ['🔎','Mestre do SELECT','Acertou de primeira as consultas (11 a 15)',s=>[10,11,12,13,14].every(i=>primeira(s,i))],
+ ['🛡️','Guardião do GRANT','Acertou de primeira as de permissões (16 a 18)',s=>[15,16,17].every(i=>primeira(s,i))],
+ ['💾','Backup em dia','Acertou de primeira as de backup (19 e 20)',s=>[18,19].every(i=>primeira(s,i))],
+ ['🔥','Combo 5','5 acertos seguidos de primeira',s=>s.maxComb>=5],
+ ['⚡','Combo 10','10 acertos seguidos de primeira',s=>s.maxComb>=10],
+ ['📚','Pesquisador','Consultou o material 3 vezes',s=>s.lms>=3],
+ ['🧩','Detetive do júri','Achou os 4 erros do programa',s=>s.dA.acertos===4],
+ ['✍️','Escritor de comandos','Escreveu os 4 comandos certos',s=>s.dB.every(b=>b.ok)],
+];
+const conquistas=s=>CONQ.filter(c=>c[3](s));
+function verConquistasNovas(antes){const ag=conquistas(S).map(c=>c[1]);for(const c of conquistas(S))if(!antes.includes(c[1])){festa();toast(`${c[0]} Conquista: ${c[1]}!`,3500)}return ag}
+function festa(){if($(".festa"))return;const box=document.createElement('div');box.className='festa';const E=['🎉','⭐','✨','🎊','🏅'];for(let i=0;i<26;i++){const s=document.createElement('span');s.textContent=E[i%E.length];s.style.left=Math.random()*100+'vw';s.style.animationDelay=Math.random()*.4+'s';box.appendChild(s)}document.body.appendChild(box);setTimeout(()=>box.remove(),2200)}
+// ---------- topo ----------
+function barraTopo(){if(!S)return'';const xp=xpTotal(S),{n,prox}=nivel(xp);const pc=prox?Math.round((xp-n[0])/(prox[0]-n[0])*100):100;
+ return`<div class="hud"><div><b>${esc(S.nome)}</b><div class="peq">Seu número X = <b>${S.X}</b></div></div>
+ <div class="hudnv"><span class="nv">${n[2]} ${n[1]}</span><div class="xpbar"><i style="width:${pc}%"></i></div><div class="peq">${xp} XP${prox?` • faltam ${prox[0]-xp} para ${prox[2]} ${prox[1]}`:' • nível máximo!'}</div></div>
+ <div class="hudc"><span class="envio" id="stEnvio">${statusEnvio()}</span>${S.comb>=2?`<span class="combo">🔥 x${S.comb}</span>`:''}<span title="Conquistas">${conquistas(S).map(c=>c[0]).join('')||'<span class="peq">sem conquistas ainda</span>'}</span></div></div>`}
+// ===================== TELAS DO ALUNO =====================
+function telaInicio(){S=null;const ss=(()=>{try{return JSON.parse(sessionStorage.getItem(CH+'atual')||'null')}catch(e){return null}})();
+ app.innerHTML=`<div class="hero"><div class="faixa">Técnico em IA • Turma 202600029 • Aquecimento 26/11</div>
+ <h1>🎪 Feira de Ciências</h1><p class="sub">O sistema da feira tem bugs, uma tabela de votos e jurados que precisam de permissão. Conserte tudo, ganhe XP e prepare-se para <b>sexta (Python)</b> e <b>sábado (Banco de dados)</b>.</p>
+ <div class="card entrar"><h2>Entrar no jogo</h2><label>Seu nome completo<input id="nome" autocomplete="off" placeholder="Nome e sobrenome"></label>
+ <button id="bEntrar" class="grande">🎮 Começar</button>
+ ${ss?`<p class="peq">Continuar nesta aba: <a href="#" class="cont" data-n="${esc(ss.nome)}">${esc(ss.nome)}</a></p>`:''}
+ ${temChave()?`<p class="ok-envio">☁️ Envio para o professor ligado.</p>`:`<p class="aviso">⚠️ Abra o jogo pelo <b>link que o professor passou</b>. Sem ele, as suas respostas não chegam ao professor.</p>`}
+ <p class="peq">As respostas vão direto para o professor (cifradas, só ele abre). Pode consultar o LMS (<a href="${LMS}" target="_blank" rel="noopener">senac-lms.pages.dev</a>) e o 📖 resumo dentro do jogo. Não pode colar nem usar IA nas respostas escritas.</p></div></div>`;
+ $('#bEntrar').onclick=entrar;$('#nome').onkeydown=e=>{if(e.key==='Enter')entrar()};
+ $$('.cont').forEach(a=>a.onclick=ev=>{ev.preventDefault();$('#nome').value=a.dataset.n;entrar()})}
+function entrar(){const bruto=$('#nome').value;const nome=titulo(bruto);const partes=nome.split(' ').filter(p=>p.length>1);
+ if(partes.length<2){toast('Digite o nome completo: nome e sobrenome.');return}
+ let salvo=null;try{salvo=JSON.parse(sessionStorage.getItem(CH+'atual')||'null')}catch(e){}if(salvo&&normNome(salvo.nome)!==normNome(nome))salvo=null;
+ if(!salvo&&partes.length<3&&!confirm(`Confirma o nome "${nome}"? Use o nome completo, igual ao da chamada.`))return;
+ S=salvo&&salvo.jogo===JOGO?salvo:novoEstado(nome);salvar();iniciarEnvioAuto();telaMapa()}
+function telaMapa(){const e1=ESTANDES[0],e2=ESTANDES[1],e3=ESTANDES[2];const lib=estandeFeito(S,e1)&&estandeFeito(S,e2);
+ const card=(e,i)=>{const feitos=e.qs.filter(q=>feito(S,q)).length,ok=e.qs.filter(q=>primeira(S,q)).length;const fim=feitos===e.qs.length;const m=medalha(S,e);
+  return`<div class="estande ${fim?'fim':''}" data-e="${i}"><div class="ic">${e.ic}</div><h3>${e.nome}</h3><p class="peq">${e.desc}</p>
+  <div class="pontos">${e.qs.map(q=>`<i class="${primeira(S,q)?'ok':feito(S,q)?'meio':S.r[q]?'tent':''}"></i>`).join('')}</div>
+  <p>${fim?`${m[0]} Medalha de ${m[1]} • ${ok}/10 de primeira`:`${feitos}/10 feitas`}</p><button>${fim?'Rever':'Jogar'}</button></div>`};
+ const dfeito=desafioFeito(S);
+ app.innerHTML=barraTopo()+`<div class="mapa">${card(e1,0)}${card(e2,1)}
+ <div class="estande ${lib?'':'trancado'} ${dfeito?'fim':''}" data-e="2"><div class="ic">${lib?e3.ic:'🔒'}</div><h3>${e3.nome}</h3><p class="peq">${e3.desc}</p>
+ <p>${dfeito?`Concluído • ${(S.dA.pts||0)+(S.dA.totPts||0)+S.dB.reduce((a,b)=>a+b.pts,0)} XP`:lib?'Liberado!':'Termine os estandes 1 e 2'}</p><button ${lib?'':'disabled'}>${dfeito?'Rever':'Entrar'}</button></div></div>
+ <div class="linha centro"><button id="bConsulta" class="sec">📖 Resumo para consulta</button><button id="bEntrega" class="${dfeito?'grande':'sec'}">📤 Entregar para o professor</button><button id="bSair" class="sec">Sair</button></div>`;
+ $$('.estande').forEach(d=>{const i=+d.dataset.e;d.querySelector('button').onclick=()=>{if(i<2){const e=ESTANDES[i];const prox=e.qs.find(q=>!feito(S,q));telaQ(prox??e.qs[0])}else telaDesafio()}});
+ $('#bConsulta').onclick=()=>abrirConsulta(null);$('#bEntrega').onclick=telaEntrega;$('#bSair').onclick=async()=>{if(S.sujo&&temChave()){await enviar('saída')}try{sessionStorage.removeItem(CH+'atual')}catch(e){}telaInicio()}}
+function abrirConsulta(g){S.lms++;salvar();const ks=Object.keys(CONSULTA);const ini=g||ks[0];
+ const m=document.createElement('div');m.className='modal';m.innerHTML=`<div class="card larga"><div class="linha"><h2 style="margin:0">📖 Consulta</h2><span style="flex:1"></span><button class="sec" id="mFechar">Fechar</button></div>
+ <div class="abas">${ks.map(k=>`<button class="aba ${k===ini?'on':''}" data-k="${k}">${CONSULTA[k].t}</button>`).join('')}</div><div id="mCorpo"></div></div>`;
+ document.body.appendChild(m);const mostra=k=>{const c=CONSULTA[k];$('#mCorpo').innerHTML=`<p class="onde">📌 ${esc(c.onde)} • <a href="${LMS}" target="_blank" rel="noopener">abrir o LMS ↗</a></p>${c.html}`;m.querySelectorAll('.aba').forEach(b=>b.classList.toggle('on',b.dataset.k===k))};
+ mostra(ini);m.querySelectorAll('.aba').forEach(b=>b.onclick=()=>mostra(b.dataset.k));$('#mFechar').onclick=()=>{m.remove();const t=$('.hud');if(t)t.outerHTML=barraTopo()};m.onclick=e=>{if(e.target===m)$('#mFechar').click()}}
+function telaQ(i){const q=Q[i],e=ESTANDES.find(e=>e.id===q.f);const r=S.r[i]||{a:[],ok:false,xp:0};const ord=ordemOpcoes(i);const pos=e.qs.indexOf(i)+1;const fim=feito(S,i);
+ app.innerHTML=barraTopo()+`<div class="card q"><div class="linha"><span class="tag">${e.ic} ${e.nome.split(':')[0]} • ${pos}/10</span><span class="tag ind">${q.ind}</span><span style="flex:1"></span><button class="sec" id="bCons">📖 Consultar</button><button class="sec" id="bMapa">🗺️ Mapa</button></div>
+ <div class="pontos grandes">${e.qs.map(k=>`<i class="${primeira(S,k)?'ok':feito(S,k)?'meio':S.r[k]?'tent':''} ${k===i?'aqui':''}" data-q="${k}"></i>`).join('')}</div>
+ <h2>${i+1}. ${esc(q.p)}</h2>
+ ${q.df?`<details open><summary>DataFrame df da feira</summary><pre class="ctx">${esc(DF)}</pre></details>`:''}
+ ${q.tab?`<details ${i===10?'open':''}><summary>Tabelas projetos e turmas</summary><pre class="ctx">${esc(TAB)}</pre></details>`:''}
+ ${q.c?`<pre class="cod">${esc(q.c)}</pre>`:''}
+ <div class="ops">${ord.map((o,j)=>`<button class="op ${r.a.includes(o)?(o===certa(i)?'certa':'errada'):''} ${fim&&o===certa(i)?'certa':''}" data-o="${o}" ${fim||r.a.includes(o)?'disabled':''}><b>${'ABCD'[j]}</b> ${esc(q.o[o])}</button>`).join('')}</div>
+ <div id="fb">${fim?feedback(i):r.a.length?`<div class="fb ruim">❌ Ainda não. Você tem mais uma chance (vale 40 XP). Que tal 📖 consultar?</div>`:`<p class="peq">Acertou de primeira: 100 XP + bônus de combo. Na segunda tentativa: 40 XP.</p>`}</div></div>`;
+ $('#bMapa').onclick=telaMapa;$('#bCons').onclick=()=>abrirConsulta(q.g);
+ $$('.pontos.grandes i').forEach(d=>d.onclick=()=>telaQ(+d.dataset.q));
+ $$('.op').forEach(b=>b.onclick=()=>responder(i,+b.dataset.o))}
+function feedback(i){const q=Q[i],r=S.r[i];const prox=proxima(i);
+ return`<div class="fb ${r.ok?'bom':'ruim'}">${r.ok?(r.a.length===1?`✅ Acertou de primeira! +${r.xp} XP`:`✅ Acertou na segunda: +${r.xp} XP`):`❌ Não foi dessa vez. A certa é: <b>${esc(q.o[certa(i)])}</b>`}<p>💡 ${esc(q.e)}</p></div>
+ <div class="linha"><span style="flex:1"></span>${prox!==null?`<button id="bProx" class="grande">Próxima ➜</button>`:`<button id="bFimE" class="grande">Ver a medalha do estande 🏅</button>`}</div>`}
+function proxima(i){const e=ESTANDES.find(e=>e.id===Q[i].f);const pos=e.qs.indexOf(i);for(let k=1;k<=e.qs.length;k++){const q=e.qs[(pos+k)%e.qs.length];if(!feito(S,q))return q}return null}
+function responder(i,o){const antes=conquistas(S).map(c=>c[1]);const r=S.r[i]||(S.r[i]={a:[],ok:false,xp:0});if(feito(S,i)||r.a.includes(o))return;
+ r.a.push(o);r.t=Date.now();
+ if(o===certa(i)){r.ok=true;if(r.a.length===1){S.comb++;S.maxComb=Math.max(S.maxComb,S.comb);r.xp=100+Math.min(S.comb-1,5)*10}else{S.comb=0;r.xp=40}}
+ else if(r.a.length>=2){S.comb=0}else{S.comb=0}
+ salvar();telaQ(i);verConquistasNovas(antes);
+ const bp=$('#bProx');if(bp)bp.onclick=()=>telaQ(proxima(i));const bf=$('#bFimE');if(bf)bf.onclick=()=>fimEstande(Q[i].f);
+ if(r.ok&&r.a.length===1&&S.comb>=3)toast(`🔥 Combo x${S.comb}!`)}
+// rebind dos botões quando a tela é reaberta já respondida
+const _telaQ=telaQ;telaQ=function(i){_telaQ(i);const bp=$('#bProx');if(bp)bp.onclick=()=>telaQ(proxima(i));const bf=$('#bFimE');if(bf)bf.onclick=()=>fimEstande(Q[i].f)};
+function fimEstande(id){enviar('fim do '+id);const e=ESTANDES.find(x=>x.id===id);const m=medalha(S,e);const ok=e.qs.filter(q=>primeira(S,q)).length;festa();
+ const outro=ESTANDES.find(x=>x.id!==id&&x.qs&&!estandeFeito(S,x));
+ app.innerHTML=barraTopo()+`<div class="card centro"><div class="medalha">${m[0]}</div><h2>${e.nome}: medalha de ${m[1]}!</h2><p>${ok} de 10 de primeira.</p>
+ <table class="mini">${e.qs.map(q=>`<tr><td>${q+1}</td><td>${primeira(S,q)?'✅ de primeira':S.r[q].ok?'🟡 na segunda':'❌'}</td><td class="peq">${esc(Q[q].ind)} • ${esc(Q[q].p)}</td></tr>`).join('')}</table>
+ <div class="linha centro"><button class="sec" id="bRev">Rever perguntas</button><button class="grande" id="bSeg">${outro?`Ir para ${outro.ic} ${outro.nome.split(':')[0]}`:'🏆 Ir para o Desafio do Júri'}</button></div></div>`;
+ $('#bRev').onclick=()=>telaQ(e.qs[0]);$('#bSeg').onclick=()=>{if(outro){const p=outro.qs.find(q=>!feito(S,q));telaQ(p)}else telaDesafio()}}
+// ---------- Desafio do Júri ----------
+const MON={};// monitor de digitação por campo
+function monitorar(el,id){const m=MON[id]||(MON[id]={teclas:0,col:0,salto:0});
+ const bloq=e=>{e.preventDefault();m.col++;S.col++;salvar();toast('Aqui não pode colar: digite com as suas mãos. ✋',3000)};
+ el.addEventListener('paste',bloq);el.addEventListener('drop',bloq);
+ el.addEventListener('beforeinput',e=>{if(e.inputType==='insertText'&&e.data&&e.data.length<=2)m.teclas+=e.data.length;if(e.data&&e.data.length>8&&e.inputType!=='insertCompositionText')m.salto=Math.max(m.salto,e.data.length);if(e.inputType==='insertFromPaste'||e.inputType==='insertFromDrop'){e.preventDefault();m.col++}})}
+function suspeito(id,txt){const m=MON[id];if(!m)return null;const n=txt.replace(/\s/g,'').length;const mot=[];if(n>12&&n>m.teclas*1.3+8)mot.push('texto apareceu sem ser digitado');if(m.salto>25)mot.push('bloco grande inserido de uma vez');if(/```|\*\*|—/.test(txt))mot.push('formatação típica de IA');return mot.length?mot:null}
+function telaDesafio(){if(!(estandeFeito(S,ESTANDES[0])&&estandeFeito(S,ESTANDES[1]))){toast('Termine os estandes 1 e 2 primeiro.');return telaMapa()}
+ const A=S.dA,X=S.X;const fimA=A.acertos===4||A.tent>=3;const fimT=A.totOk||A.totTent>=3;
+ const opsL=v=>`<option value="">linha</option>${[1,2,3,4,5,6,7].map(n=>`<option ${+v===n?'selected':''}>${n}</option>`).join('')}`;
+ const opsT=v=>`<option value="">tipo do erro</option>${TIPOS.map(t=>`<option ${v===t?'selected':''}>${t}</option>`).join('')}`;
+ app.innerHTML=barraTopo()+`<div class="card"><div class="linha"><h2 style="margin:0">🏆 Desafio do Júri</h2><span style="flex:1"></span><button class="sec" id="bCons">📖 Consultar</button><button class="sec" id="bMapa">🗺️ Mapa</button></div>
+ <p>O seu número é <b>X = ${X}</b>. Escreva com as suas palavras e digite tudo (não dá para colar). Cada parte tem até 3 tentativas: a 1ª vale 100%, a 2ª 70% e a 3ª 40% dos pontos.</p>
+ <h3>Parte A: caça aos erros (Python, ind. 3)</h3><p>O programa da urna tem <b>4 erros</b>: 3 dão mensagem e 1 é de lógica. Para cada um, escolha a linha, o tipo e escreva a linha corrigida.</p>
+ <pre class="cod num">${BUG_COD.map((l,i)=>`<span>${i+1}</span>${esc(l)}`).join('\n')}</pre>
+ <table class="bugs"><tr><th>Linha</th><th>Tipo</th><th>Linha corrigida (digite)</th></tr>${A.linhas.map((b,k)=>`<tr><td><select data-k="${k}" class="sl" ${fimA?'disabled':''}>${opsL(b.l)}</select></td><td><select data-k="${k}" class="st" ${fimA?'disabled':''}>${opsT(b.t)}</select></td><td><input data-k="${k}" class="sc" value="${esc(b.c||'')}" ${fimA?'disabled':''} spellcheck="false" autocomplete="off"></td></tr>`).join('')}</table>
+ <div class="linha">${fimA?`<div class="fb ${A.acertos===4?'bom':'ruim'}">${A.acertos===4?'✅ Você achou e corrigiu os 4 erros!':`Você achou ${A.acertos} de 4. O professor mostra a correção no fim.`} +${A.pts} XP</div>`:`<button id="bConfA">Conferir a parte A (tentativa ${A.tent+1} de 3)</button>${A.tent?`<span class="peq">Última conferência: ${A.acertos} de 4 certos.</span>`:''}`}</div>
+ <p style="margin-top:14px">Depois de consertar, se você digitar <b>${X}</b> votos extras, qual total o programa mostra?</p>
+ <div class="linha"><input id="tot" type="number" style="max-width:140px" value="${esc(A.total)}" ${fimT?'disabled':''}>${fimT?`<div class="fb ${A.totOk?'bom':'ruim'}">${A.totOk?`✅ Isso! +${A.totPts} XP`:'❌ Não foi. Confira a soma da lista e os votos extras.'}</div>`:`<button id="bConfT">Conferir (tentativa ${A.totTent+1} de 3)</button>`}</div>
+ <h3>Parte B: escreva os comandos</h3>${CMDS.map((c,k)=>{const b=S.dB[k],fim=b.ok||b.tent>=3;const p=typeof c.p==='function'?c.p(X):c.p;const d=typeof c.dica==='function'?c.dica(X):c.dica;
+  return`<div class="cmd"><p><span class="tag ind">${c.ind}</span> <b>${k+1}.</b> ${esc(p)}</p><textarea data-k="${k}" class="tb" rows="2" spellcheck="false" placeholder="${esc(c.ph)}" ${fim?'disabled':''}>${esc(b.t)}</textarea>
+  <div class="linha">${fim?`<div class="fb ${b.ok?'bom':'ruim'}">${b.ok?`✅ Comando certo! +${b.pts} XP`:'❌ Ainda não ficou certo. O professor mostra a correção no fim.'}</div>`:`<button class="bConfB" data-k="${k}">Conferir (tentativa ${b.tent+1} de 3)</button>${b.tent?`<span class="peq">💡 ${esc(d)}</span>`:''}`}</div></div>`}).join('')}
+ <div class="linha centro"><button id="bEnt" class="${desafioFeito(S)?'grande':'sec'}">📤 Entregar para o professor</button></div></div>`;
+ $('#bMapa').onclick=telaMapa;$('#bCons').onclick=()=>abrirConsulta('erro');$('#bEnt').onclick=telaEntrega;
+ $$('.sc').forEach(el=>monitorar(el,'a'+el.dataset.k));$$('.tb').forEach(el=>monitorar(el,'b'+el.dataset.k));
+ const lerA=()=>{$$('.sl').forEach(s=>A.linhas[s.dataset.k].l=s.value);$$('.st').forEach(s=>A.linhas[s.dataset.k].t=s.value);$$('.sc').forEach(s=>A.linhas[s.dataset.k].c=s.value)};
+ $$('.sl,.st,.sc').forEach(el=>el.onchange=()=>{lerA();salvar()});
+ $$('.tb').forEach(el=>el.oninput=()=>{S.dB[el.dataset.k].t=el.value;salvar()});
+ const tot=$('#tot');if(tot)tot.oninput=()=>{A.total=tot.value;salvar()};
+ const ba=$('#bConfA');if(ba)ba.onclick=()=>{lerA();const antes=conquistas(S).map(c=>c[1]);const usados=new Set();let ac=0;
+  for(const b of BUGS){const k=A.linhas.findIndex((x,j)=>!usados.has(j)&&b.l.includes(+x.l)&&x.t===b.t&&b.re.test(x.c||''));if(k>=0){usados.add(k);ac++}}
+  A.linhas.forEach((x,j)=>{const s=suspeito('a'+j,x.c||'');if(s)S.sus.push({onde:'A'+(j+1),mot:s})});
+  A.acertos=ac;const pts=Math.round(ac*100*FATOR[A.tent]);A.tent++;A.pts=Math.max(A.pts,pts);salvar();if(ac===4)festa();else toast(`${ac} de 4 certos (linha + tipo + correção).`,3500);telaDesafio();verConquistasNovas(antes)};
+ const bt=$('#bConfT');if(bt)bt.onclick=()=>{A.total=tot.value;const ok=+tot.value===44+X&&tot.value!=='';A.totTent++;if(ok){A.totOk=true;A.totPts=Math.round(100*FATOR[A.totTent-1]);festa()}else toast('Ainda não. Some a lista e os extras.');salvar();telaDesafio()};
+ $$('.bConfB').forEach(bb=>bb.onclick=()=>{const k=+bb.dataset.k,b=S.dB[k];const antes=conquistas(S).map(c=>c[1]);b.t=$(`.tb[data-k="${k}"]`).value;if(!b.t.trim()){toast('Escreva o comando antes de conferir.');return}
+  const sus=suspeito('b'+k,b.t);if(sus)S.sus.push({onde:'B'+(k+1),mot:sus});
+  const ok=CMDS[k].ok(b.t.replace(/\s+/g,' '),X);b.tent++;if(ok){b.ok=true;b.pts=Math.round(100*FATOR[b.tent-1]);festa()}else toast('Ainda não ficou certo. Veja a dica.');salvar();telaDesafio();verConquistasNovas(antes)})}
+// ---------- Entrega ----------
+function b64u(bytes){let s='';for(const b of bytes)s+=String.fromCharCode(b);return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}
+function deb64u(t){t=t.replace(/-/g,'+').replace(/_/g,'/');while(t.length%4)t+='=';return Uint8Array.from(atob(t),c=>c.charCodeAt(0))}
+const mencao=p=>p>=70?'A':p>=50?'PA':'NA';
+const TXT_M={A:'Atendido',PA:'Parcialmente atendido',NA:'Não atendido'};
+async function telaEntrega(){S.ent=Date.now();salvar();const xp=xpTotal(S),{n}=nivel(xp);const ind=indicadores(S);
+ app.innerHTML=barraTopo()+`<div class="card centro"><div class="medalha">${n[2]}</div><h2>${esc(S.nome)}: ${n[1]} com ${xp} XP</h2>
+ <p>${ESTANDES.slice(0,2).map(e=>`${e.ic} ${medalha(S,e)[0]} ${medalha(S,e)[1]}`).join(' • ')} • 🏆 Desafio: ${desafioFeito(S)?'concluído':'incompleto'}</p>
+ <h3>Como você está para a avaliação</h3>
+ <table class="mini">${Object.entries(ind).map(([k,v])=>`<tr><td>${k}</td><td><span class="selo ${mencao(v)}">${mencao(v)}</span></td><td class="peq">${v}% dos pontos</td><td class="peq">${mencao(v)==='A'?'Tranquilo: revise rapidinho':mencao(v)==='PA'?'Revise antes da avaliação':'Atenção: comece a revisão por aqui'}</td></tr>`).join('')}</table>
+ <p class="peq">A = 70% ou mais dos pontos do indicador • PA = de 50% a 69% • NA = menos de 50%. É um aquecimento: mostra onde revisar.</p>
+ <div id="stEnt" class="fb">☁️ Enviando para o professor...</div>
+ <div class="linha centro"><button class="sec" id="bMapa">🗺️ Voltar ao mapa</button><button class="sec" id="bDe">Enviar de novo</button></div></div>`;
+ $('#bMapa').onclick=telaMapa;const vai=async()=>{const r=await enviar('entrega');const st=$('#stEnt');if(!st)return;
+  if(r.ok){st.className='fb bom';st.innerHTML=`✅ Entregue! O professor já recebeu (às ${new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}). Pode continuar jogando: vale a última entrega.`}
+  else{st.className='fb ruim';st.innerHTML=`❌ Não consegui enviar: ${esc(r.erro)}<br>Chame o professor. Ele pode receber pelo arquivo: <button id="bArq" class="sec">💾 Baixar arquivo cifrado</button>`;
+   $('#bArq').onclick=async()=>baixar(`feira_${normNome(S.nome).slice(0,20)}.json`,JSON.stringify(await cifrarEntrega(S)),'application/json')}};
+ $('#bDe').onclick=vai;vai()}
+function baixar(nome,txt,tipo){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:tipo}));a.download=nome;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
+// ---------- indicadores (porcentagem de pontos por indicador) ----------
+function indicadores(s){const P={'Python ind. 3':[],'Python ind. 4':[],'BD ind. 4':[],'BD ind. 5':[],'BD ind. 6':[]};const mapa={'Python 3':'Python ind. 3','Python 4':'Python ind. 4','BD 4':'BD ind. 4','BD 5':'BD ind. 5','BD 6':'BD ind. 6'};
+ Q.forEach((q,i)=>{const r=s.r[i];P[mapa[q.ind]].push(r&&r.ok?(r.a.length===1?1:.5):0)});
+ const A=s.dA;if(A.tent)P['Python ind. 3'].push(A.acertos/4,A.acertos/4);else P['Python ind. 3'].push(0,0);P['Python ind. 3'].push(A.totOk?1:0);
+ s.dB.forEach((b,k)=>P[mapa[CMDS[k].ind]].push(b.ok?(b.tent===1?1:b.tent===2?.7:.4):0));
+ const R={};for(const[k,v]of Object.entries(P))R[k]=Math.round(v.reduce((a,b)=>a+b,0)/v.length*100);return R}
+
+// ===================== ENVIO PARA O REPOSITÓRIO (cifrado) =====================
+// Cada aluno grava respostas/<id>.json no repositório pela API do GitHub, com a chave de envio (token) que vem no link do professor (#k=...).
+// O conteúdo vai cifrado com a CHAVE PÚBLICA do professor (RSA-OAEP + AES-GCM). Só a senha do professor abre a chave privada.
+const REPO='gtosilva89/aquecimento',PASTA='respostas',API='https://api.github.com/repos/'+REPO+'/contents/';
+const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const ab64=buf=>{let s='';const u=new Uint8Array(buf);for(let i=0;i<u.length;i+=8192)s+=String.fromCharCode.apply(null,u.subarray(i,i+8192));return btoa(s)};
+const utf8b64=t=>ab64(new TextEncoder().encode(t));
+const deObf=t=>{try{return atob(t.replace(/-/g,'+').replace(/_/g,'/')).split('').reverse().join('')}catch(e){return''}};
+const obf=t=>btoa(t.split('').reverse().join('')).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+// a chave chega pelo link (#k=...) e fica só nesta aba; o professor também pode guardá-la no computador dele (Área do professor)
+(function(){const m=location.hash.match(/k=([A-Za-z0-9_-]+)/);if(m){try{sessionStorage.setItem(CH+'k',m[1])}catch(e){}history.replaceState(null,'',location.pathname+location.search)}})();
+function chaveEnvio(){let k=null;try{k=sessionStorage.getItem(CH+'k')}catch(e){}if(!k)k=lsGet(CH+'prof_k',null);return k?deObf(k):null}
+const temChave=()=>!!chaveEnvio();
+async function cifrarEntrega(s){const sub=crypto.subtle;const pub=await sub.importKey('spki',b64(CHAVE_PUBLICA),{name:'RSA-OAEP',hash:'SHA-256'},false,['encrypt']);
+ const k=await sub.generateKey({name:'AES-GCM',length:256},true,['encrypt']);const iv=crypto.getRandomValues(new Uint8Array(12));
+ const dados={...s};delete dados.sujo;
+ const ct=await sub.encrypt({name:'AES-GCM',iv},k,new TextEncoder().encode(JSON.stringify(dados)));
+ const ek=await sub.encrypt({name:'RSA-OAEP'},pub,await sub.exportKey('raw',k));
+ return{jogo:JOGO,v:1,id:await idArquivo(s),ts:Date.now(),ek:ab64(ek),iv:ab64(iv),ct:ab64(ct)}}
+async function idArquivo(s){const h=await crypto.subtle.digest('SHA-256',new TextEncoder().encode('feira26|'+normNome(s.nome)));return[...new Uint8Array(h)].slice(0,8).map(b=>b.toString(16).padStart(2,'0')).join('')+'_'+s.sid}
+async function gh(caminho,op={}){const tk=op.token||chaveEnvio();const h={'Accept':'application/vnd.github+json'};if(tk)h.Authorization='Bearer '+tk;
+ const r=await fetch(API+caminho+(op.ref?'':''),{method:op.method||'GET',headers:h,body:op.body?JSON.stringify(op.body):undefined,cache:'no-store'});
+ let j=null;try{j=await r.json()}catch(e){}return{st:r.status,j}}
+async function gravarArquivo(caminho,conteudoB64,msg,token){let sha=null;
+ for(let t=0;t<4;t++){if(sha===null){const g=await gh(caminho,{token});sha=g.st===200&&g.j?g.j.sha:undefined}
+  const r=await gh(caminho,{token,method:'PUT',body:{message:msg,content:conteudoB64,...(sha?{sha}:{})}});
+  if(r.st===200||r.st===201)return{ok:true,sha:r.j.content.sha};
+  if(r.st===401||r.st===403&&!(r.j&&/rate limit/i.test(r.j.message||'')))return{ok:false,erro:r.st===401?'a chave de envio não vale mais (peça o link novo ao professor)':'sem permissão para gravar no repositório'};
+  sha=null;await new Promise(z=>setTimeout(z,800*(t+1)+Math.random()*800))}
+ return{ok:false,erro:'o GitHub não respondeu. Tente de novo em 1 minuto.'}}
+let ENVIANDO=null,ULT_ENVIO=0;
+function statusEnvio(){if(!temChave())return'⚠️ sem envio';return ULT_ENVIO?`☁️ enviado ${new Date(ULT_ENVIO).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}`:'☁️ envio ligado'}
+async function enviar(motivo){if(!S)return{ok:false,erro:'sem aluno'};if(!temChave())return{ok:false,erro:'o jogo não foi aberto pelo link do professor'};
+ if(ENVIANDO)await ENVIANDO.catch(()=>{});
+ ENVIANDO=(async()=>{const pac=await cifrarEntrega(S);const r=await gravarArquivo(`${PASTA}/${pac.id}.json`,utf8b64(JSON.stringify(pac)),'Entrega do aquecimento');
+  if(r.ok){S.sujo=false;ULT_ENVIO=Date.now();salvar();S.sujo=false}const st=$('#stEnvio');if(st)st.textContent=r.ok?statusEnvio():'⚠️ falhou o envio';return r})();
+ try{return await ENVIANDO}catch(e){return{ok:false,erro:String(e.message||e)}}finally{ENVIANDO=null}}
+let AUTO=null;function iniciarEnvioAuto(){if(AUTO)return;AUTO=setInterval(()=>{if(S&&S.sujo&&temChave())enviar('automático')},8*60*1000)}
+
+// ===================== ÁREA DO PROFESSOR =====================
+let PROF=null;// {senha, priv, M (modelos), L (alunos)}
+async function abrirCofre(senha){const sub=crypto.subtle;const base=await sub.importKey('raw',new TextEncoder().encode(senha),'PBKDF2',false,['deriveKey']);
+ const k=await sub.deriveKey({name:'PBKDF2',salt:b64(COFRE.s),iterations:150000,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['decrypt']);
+ const o=JSON.parse(new TextDecoder().decode(await sub.decrypt({name:'AES-GCM',iv:b64(COFRE.i)},k,b64(COFRE.c))));
+ const priv=await sub.importKey('pkcs8',b64(o.pk),{name:'RSA-OAEP',hash:'SHA-256'},false,['decrypt']);return{priv,M:o.M}}
+async function decifrar(pac){const sub=crypto.subtle;const raw=await sub.decrypt({name:'RSA-OAEP'},PROF.priv,b64(pac.ek));
+ const k=await sub.importKey('raw',raw,'AES-GCM',false,['decrypt']);return JSON.parse(new TextDecoder().decode(await sub.decrypt({name:'AES-GCM',iv:b64(pac.iv)},k,b64(pac.ct))))}
+async function pedirSenha(){if(PROF)return true;const p=prompt('Senha do professor:');if(p===null)return false;
+ try{const c=await abrirCofre(p.trim());PROF={senha:p.trim(),...c,L:{}};return true}catch(e){toast('Senha errada.');return false}}
+function guardarAluno(s){const k=normNome(s.nome);const a=PROF.L[k];// vale a última entrega; se houver duas sessões, fica a de mais XP e a outra aparece no histórico
+ if(!a){PROF.L[k]=s;return}const melhor=xpTotal(s)>xpTotal(a)||(xpTotal(s)===xpTotal(a)&&s.ts>a.ts)?s:a;melhor.outras=(a.outras||0)+1;PROF.L[k]=melhor}
+async function carregarRepo(){const tk=chaveEnvio();const r=await gh(PASTA,{token:tk});if(r.st===404)return{n:0};if(r.st!==200)return{erro:`não consegui ler a pasta respostas (código ${r.st}${r.st===403?': limite de leituras do GitHub, configure a chave de envio':''})`};
+ const arqs=r.j.filter(f=>/\.json$/.test(f.name));const porId={};
+ // um arquivo por sessão do aluno: baixa todos
+ let n=0,falhas=0;PROF.L={};
+ await Promise.all(arqs.map(async f=>{try{const g=await gh(PASTA+'/'+f.name,{token:tk});const txt=new TextDecoder().decode(b64(g.j.content.replace(/\n/g,'')));
+  const pac=JSON.parse(txt);if(pac.jogo!==JOGO)return;const s=await decifrar(pac);guardarAluno(s);n++}catch(e){falhas++}}));
+ return{n,falhas}}
+async function importarArquivos(files){let n=0;for(const f of files){try{const pac=JSON.parse(await f.text());const s=await decifrar(pac);guardarAluno(s);n++}catch(e){}}return n}
+function linhaAluno(s){const ind=indicadores(s);return{ind,xp:xpTotal(s),nv:nivel(xpTotal(s)).n}}
+const selo=m=>`<span class="selo ${m}">${m}</span>`;
+const IND_NOMES=['Python ind. 3','Python ind. 4','BD ind. 4','BD ind. 5','BD ind. 6'];
+async function telaProf(){if(!await pedirSenha())return;
+ app.innerHTML=`<div class="card"><div class="linha"><h2 style="margin:0">🔒 Área do professor</h2><span style="flex:1"></span><button class="sec" id="pSair">Sair</button></div><p id="pMsg" class="peq">Lendo as respostas no repositório...</p><div id="pCorpo"></div></div>`;
+ $('#pSair').onclick=()=>{PROF=null;telaInicio()};
+ const r=await carregarRepo();$('#pMsg').textContent=r.erro?'⚠️ '+r.erro:`${Object.keys(PROF.L).length} aluno(s) com entrega no repositório${r.falhas?` • ${r.falhas} arquivo(s) não abriram`:''} • atualizado às ${new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}.`;
+ desenharProf()}
+function desenharProf(){const lista=Object.values(PROF.L).sort((a,b)=>a.nome.localeCompare(b.nome,'pt'));const tk=chaveEnvio();
+ const linhas=lista.map(s=>{const l=linhaAluno(s);return`<tr><td><a href="#" data-n="${normNome(s.nome)}">${esc(s.nome)}</a>${s.outras?` <span class="peq" title="Entrou mais de uma vez; vale a sessão com mais XP">(${s.outras+1}×)</span>`:''}</td><td>${s.X}</td><td>${l.xp}</td>${IND_NOMES.map(k=>`<td>${selo(mencao(l.ind[k]))}<div class="peq">${l.ind[k]}%</div></td>`).join('')}<td>${s.ent?'✅':'⏳'}</td><td>${s.col||s.sus.length?`⚠️ ${s.col} col. ${s.sus.length?'/ '+s.sus.length+' susp.':''}`:''}</td><td class="peq">${new Date(s.ts).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}</td></tr>`}).join('');
+ // acertos de primeira por pergunta
+ const pq=Q.map((q,i)=>{const t=lista.filter(s=>s.r[i]).length;const ok=lista.filter(s=>primeira(s,i)).length;return{i,t,p:t?Math.round(ok/t*100):null}});
+ const piores=pq.filter(x=>x.p!==null).sort((a,b)=>a.p-b.p).slice(0,5);
+ const cont=k=>{const c={A:0,PA:0,NA:0};lista.forEach(s=>c[mencao(indicadores(s)[k])]++);return c};
+ $('#pCorpo').innerHTML=`<div class="linha"><button id="pAtual">🔄 Atualizar</button><button id="pXlsx">📊 Excel com senha (salvar no repositório e baixar)</button><button class="sec" id="pImp">📂 Importar arquivo</button><input type="file" id="pArq" accept=".json" multiple hidden><button class="sec" id="pCfg">🔑 Chave de envio e link dos alunos</button><button class="sec" id="pApr">📽️ Apresentação</button></div>
+ ${tk?'':`<div class="fb ruim">⚠️ A chave de envio ainda não está configurada neste computador. Sem ela os alunos não conseguem enviar. Clique em "🔑 Chave de envio e link dos alunos".</div>`}
+ <p class="peq">Menção do aquecimento por indicador: A = 70% ou mais dos pontos • PA = 50% a 69% • NA = menos de 50%. ✅ = clicou em Entregar; ⏳ = só envio automático. Vale a última entrega de cada aluno.</p>
+ <div style="overflow:auto"><table><tr><th>Aluno</th><th>X</th><th>XP</th>${IND_NOMES.map(k=>`<th>${k}</th>`).join('')}<th>Entregou</th><th>⚠️</th><th>Hora</th></tr>${linhas||'<tr><td colspan="11">Nenhuma entrega ainda.</td></tr>'}</table></div>
+ ${lista.length?`<h3>Resumo da turma</h3><table class="mini"><tr><th>Indicador</th><th>A</th><th>PA</th><th>NA</th></tr>${IND_NOMES.map(k=>{const c=cont(k);return`<tr><td>${k}</td><td>${c.A}</td><td>${c.PA}</td><td>${c.NA}</td></tr>`}).join('')}</table>
+ <h3>Perguntas mais erradas (comece a revisão por elas)</h3><table class="mini">${piores.map(x=>`<tr><td>${x.i+1}</td><td>${x.p}% de primeira</td><td class="peq">${esc(Q[x.i].ind)} • ${esc(Q[x.i].p)}</td></tr>`).join('')}</table>`:''}`;
+ $('#pAtual').onclick=telaProfRecarregar;$('#pApr').onclick=()=>abrirApresentacao();
+ $('#pImp').onclick=()=>$('#pArq').click();$('#pArq').onchange=async e=>{const n=await importarArquivos(e.target.files);toast(`${n} arquivo(s) importado(s).`);desenharProf()};
+ $('#pCfg').onclick=telaChave;$('#pXlsx').onclick=excel;
+ $$('#pCorpo a[data-n]').forEach(a=>a.onclick=ev=>{ev.preventDefault();telaAlunoProf(PROF.L[a.dataset.n])})}
+async function telaProfRecarregar(){$('#pMsg').textContent='Lendo...';const r=await carregarRepo();$('#pMsg').textContent=r.erro?'⚠️ '+r.erro:`${Object.keys(PROF.L).length} aluno(s) • atualizado às ${new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}.`;desenharProf()}
+function telaChave(){const atual=lsGet(CH+'prof_k',null);const link=atual?location.origin+location.pathname+'#k='+atual:'';
+ $('#pCorpo').innerHTML=`<h3>🔑 Chave de envio</h3>
+ <p>Os alunos gravam as respostas no repositório usando uma chave do GitHub (token) que só tem acesso ao repositório <b>aquecimento</b>. Crie uma vez:</p>
+ <ol><li>Abra <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>.</li>
+ <li>Nome: <i>aquecimento alunos</i>. Expiração: 31/12/2026.</li><li>Repository access: <b>Only select repositories</b> → <b>aquecimento</b>.</li>
+ <li>Permissions → Repository permissions → <b>Contents: Read and write</b>.</li><li>Clique em Generate token, copie e cole aqui:</li></ol>
+ <div class="linha"><input id="kTok" placeholder="github_pat_..." autocomplete="off" spellcheck="false"><button id="kSalvar">Testar e guardar</button></div>
+ ${link?`<h3>Link para os alunos</h3><p>Mande este link aos alunos (LMS, Teams ou quadro). Ele já leva a chave: quem abrir pelo endereço sem a chave não consegue enviar.</p><textarea rows="3" readonly id="kLink">${link}</textarea><div class="linha"><button id="kCop">📋 Copiar link</button><button class="sec" id="kApagar">Apagar a chave deste computador</button></div>`:''}
+ <p class="peq">A chave fica guardada só neste navegador (do professor). Os alunos a recebem pelo link. Ela só grava no repositório aquecimento e vence na data escolhida. Se vazar, apague-a no GitHub e gere outra.</p>
+ <div class="linha"><button class="sec" id="kVolta">Voltar</button></div>`;
+ $('#kVolta').onclick=desenharProf;
+ $('#kSalvar').onclick=async()=>{const t=$('#kTok').value.trim();if(!t){toast('Cole o token.');return}$('#kSalvar').disabled=true;
+  const r=await gravarArquivo(PASTA+'/LEIA-ME.md',utf8b64('# Respostas do aquecimento\n\nArquivos cifrados enviados pelo jogo. Só abrem na Área do professor, com a senha.\n'),'Teste da chave de envio',t);$('#kSalvar').disabled=false;
+  if(!r.ok){toast('Não funcionou: '+r.erro,5000);return}lsSet(CH+'prof_k',obf(t));toast('Chave guardada e testada!');telaChave()};
+ const kc=$('#kCop');if(kc)kc.onclick=async()=>{try{await navigator.clipboard.writeText($('#kLink').value);toast('Link copiado!')}catch(e){$('#kLink').select();document.execCommand('copy')}};
+ const ka=$('#kApagar');if(ka)ka.onclick=()=>{try{localStorage.removeItem(CH+'prof_k')}catch(e){}toast('Chave apagada deste computador.');telaChave()}}
+function telaAlunoProf(s){const l=linhaAluno(s),ord=i=>i;const A=s.dA,M=PROF.M;
+ $('#pCorpo').innerHTML=`<div class="linha"><h3 style="margin:0">${esc(s.nome)} • X = ${s.X} • ${l.xp} XP • ${l.nv[2]} ${l.nv[1]}</h3><span style="flex:1"></span><button class="sec" id="aVolta">Voltar</button></div>
+ <p>${IND_NOMES.map(k=>`${k}: ${selo(mencao(l.ind[k]))} ${l.ind[k]}%`).join(' • ')}</p>
+ <table class="mini"><tr><th>Nº</th><th>Ind.</th><th>Pergunta</th><th>Respostas do aluno</th><th>Resultado</th></tr>${Q.map((q,i)=>{const r=s.r[i];return`<tr><td>${i+1}</td><td>${q.ind}</td><td class="peq">${esc(q.p)}</td><td class="peq">${r?r.a.map(o=>esc(q.o[o])).join(' → '):'—'}</td><td>${!r?'—':primeira(s,i)?'✅ 1ª':r.ok?'🟡 2ª':'❌'}</td></tr>`}).join('')}</table>
+ <h3>Desafio A: caça aos erros (${A.acertos}/4, ${A.tent} tentativa(s), ${A.pts} XP)</h3>
+ <table class="mini"><tr><th>Linha</th><th>Tipo</th><th>Correção digitada</th></tr>${A.linhas.map(x=>`<tr><td>${esc(x.l||'')}</td><td>${esc(x.t||'')}</td><td><code>${esc(x.c||'')}</code></td></tr>`).join('')}</table>
+ <p>Total digitado: <b>${esc(A.total||'—')}</b> (certo: ${44+s.X}) ${A.totOk?'✅':'❌'}</p>
+ <div class="modelo"><b>Modelo:</b><pre>${esc(M.A.replace(/X/g,s.X).replace(/44 \+ \d+/,'44 + '+s.X))}</pre></div>
+ <h3>Desafio B: comandos</h3>${CMDS.map((c,k)=>{const b=s.dB[k];return`<div class="cmd"><p><span class="tag ind">${c.ind}</span> ${esc(typeof c.p==='function'?c.p(s.X):c.p)} ${b.ok?`✅ (${b.tent}ª tentativa)`:b.tent?`❌ (${b.tent} tentativa(s))`:'—'}</p><div class="lado"><div><b>Aluno</b><pre>${esc(b.t||'—')}</pre></div><div class="modelo"><b>Modelo</b><pre>${esc(M.B[k].replace(/_X\b/g,'_'+s.X))}</pre></div></div></div>`}).join('')}
+ ${s.sus.length||s.col?`<h3>⚠️ Atenção</h3><p>${s.col} tentativa(s) de colar. ${s.sus.map(x=>`${x.onde}: ${x.mot.join(', ')}`).join(' • ')}</p>`:''}`;
+ $('#aVolta').onclick=desenharProf}
+// ---------- Excel com senha ----------
+function carregarXlsxLib(){return window.XlsxPopulate?Promise.resolve():new Promise((ok,erro)=>{const sc=document.createElement('script');sc.src='xlsx-populate.min.js';sc.onload=ok;sc.onerror=()=>erro(new Error('não carregou xlsx-populate.min.js'));document.head.appendChild(sc)})}
+async function excel(){const lista=Object.values(PROF.L).sort((a,b)=>a.nome.localeCompare(b.nome,'pt'));if(!lista.length){toast('Nenhuma entrega ainda.');return}
+ $('#pXlsx').disabled=true;toast('Montando o Excel...');try{await carregarXlsxLib();const wb=await XlsxPopulate.fromBlankAsync();
+ const sh=wb.sheet(0).name('Turma');const cab=['Aluno','X','XP','Nível',...IND_NOMES.flatMap(k=>[k,k+' %']),'Python (geral)','BD (geral)','Entregou','Colagens','Última atualização'];
+ const linhas=lista.map(s=>{const l=linhaAluno(s);const py=Math.round((l.ind['Python ind. 3']+l.ind['Python ind. 4'])/2),bd=Math.round((l.ind['BD ind. 4']+l.ind['BD ind. 5']+l.ind['BD ind. 6'])/3);
+  return[s.nome,s.X,l.xp,l.nv[1],...IND_NOMES.flatMap(k=>[mencao(l.ind[k]),l.ind[k]]),mencao(py),mencao(bd),s.ent?'sim':'não',s.col||0,new Date(s.ts).toLocaleString('pt-BR')]});
+ sh.cell('A1').value([cab,...linhas]);sh.row(1).style({bold:true,fill:{type:'solid',color:'003D76'},fontColor:'FFFFFF'});sh.freezePanes(1,1);
+ const cor={A:'C6EFCE',PA:'FFEB9C',NA:'FFC7CE'};linhas.forEach((ln,r)=>ln.forEach((v,c)=>{if(cor[v])sh.row(r+2).cell(c+1).style({fill:{type:'solid',color:cor[v]},bold:true,horizontalAlignment:'center'})}));
+ sh.column('A').width(34);for(let c=2;c<=cab.length;c++)sh.column(c).width(c===cab.length?20:12);
+ const s2=wb.addSheet('Perguntas');s2.cell('A1').value([['Aluno',...Q.map((q,i)=>`${i+1}. ${q.ind}`)],...lista.map(s=>[s.nome,...Q.map((q,i)=>!s.r[i]?'':primeira(s,i)?'1ª':s.r[i].ok?'2ª':'errou')])]);s2.row(1).style({bold:true});s2.column('A').width(34);
+ const s3=wb.addSheet('Desafio');s3.cell('A1').value([['Aluno','X','A: erros achados','A: total digitado','A: total certo',...CMDS.map((c,k)=>`B${k+1} (${c.ind})`),...CMDS.map((c,k)=>`B${k+1} certo?`)],...lista.map(s=>[s.nome,s.X,s.dA.acertos,s.dA.total,44+s.X,...s.dB.map(b=>b.t),...s.dB.map(b=>b.ok?'sim':'não')])]);s3.row(1).style({bold:true});s3.column('A').width(34);
+ const s4=wb.addSheet('Critério');s4.cell('A1').value([['Aquecimento Feira de Ciências • Turma 202600029 • 26/11/2026'],['A = 70% ou mais dos pontos do indicador; PA = 50% a 69%; NA = menos de 50%.'],['Pontos: pergunta certa de primeira = 1; na segunda = 0,5. Desafio: 1ª tentativa 100%, 2ª 70%, 3ª 40%.'],['Python ind. 3 = perguntas 1 a 6 + caça aos erros; Python ind. 4 = 7 a 10 + comando B1; BD ind. 5 = 11 a 15 + B2; BD ind. 4 = 16 a 18 + B3; BD ind. 6 = 19 e 20 + B4.'],['Atividade formativa (aquecimento para as avaliações de 27/11 e 28/11).']]);s4.column('A').width(120);
+ const blob=await wb.outputAsync({type:'blob',password:PROF.senha});const nome='Aquecimento_Feira_26-11_respostas.xlsx';baixar2(nome,blob);
+ const r=await gravarArquivo(`${PASTA}/${nome}`,ab64(await blob.arrayBuffer()),'Planilha das respostas do aquecimento (com senha)');
+ toast(r.ok?'Excel baixado e salvo no repositório (pasta respostas). A senha é a da Área do professor.':'Excel baixado, mas não salvou no repositório: '+r.erro,5000)}catch(e){toast('Erro no Excel: '+e.message,5000)}$('#pXlsx').disabled=false}
+function baixar2(nome,blob){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=nome;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},800)}
+
+// ===================== APRESENTAÇÃO (projetor) =====================
+// ← → ou clique para passar • N mostra/esconde as notas do professor • F tela cheia • Esc sai
+const SLIDES=[
+ {t:'🎪 Feira de Ciências',sub:'Aquecimento: Python e Banco de dados',h:`<p class="grande-t">Técnico em IA • Turma 202600029 • 26/11</p>`,n:'Aquecimento sem peso de prova, mas com A, PA e NA por indicador: mostra onde cada aluno está para sexta (Python, ind. 3 e 4) e sábado (BD, ind. 4, 5 e 6).'},
+ {t:'A missão',h:`<p class="grande-t">A escola vai fazer a <b>Feira de Ciências</b>. O sistema da feira está com problemas:</p><ul class="big"><li>🐍 o programa da urna tem bugs</li><li>🐼 os votos estão num DataFrame</li><li>🗄️ o banco guarda projetos e turmas</li><li>🛡️ os jurados precisam de permissão (só ler!)</li><li>💾 e alguém pode apagar um projeto sem querer</li></ul>`,n:'Conte a história: eles são a equipe de TI da feira. Cada estande do jogo é uma parte do sistema.'},
+ {t:'Como vai ser hoje',h:`<table class="agenda"><tr><td>10h40</td><td>Apresentação e "Relembrando"</td></tr><tr><td>10h55</td><td>🐍 Estande 1: Laboratório de Python (10 perguntas)</td></tr><tr><td>11h15</td><td>🗄️ Estande 2: Banco de dados da Feira (10 perguntas)</td></tr><tr><td>11h30</td><td>🏆 Estande 3: Desafio do Júri (digitar)</td></tr><tr><td>11h45</td><td>Placar, correção e o que cai sexta e sábado</td></tr></table>`,n:'Se a turma atrasar, corte o tempo do Relembrando, não o do desafio.'},
+ {t:'Como ganhar XP',h:`<div class="grade2"><div class="bloco"><h3>Perguntas</h3><p>✅ de primeira: <b>100 XP</b> + combo 🔥</p><p>🟡 na segunda: <b>40 XP</b></p><p>Cada estande dá medalha 🥇🥈🥉</p></div><div class="bloco"><h3>Desafio do Júri</h3><p>Até 3 tentativas: 100% • 70% • 40%</p><p>Digitar: <b>não dá para colar</b></p><p>X = o seu número, aparece no topo</p></div></div><p class="grande-t">Níveis: 🎟️ Visitante → 🧪 Expositor → 🔬 Monitor → 🏅 Jurado → 🏆 Campeão da Feira</p>`,n:'No fim, cada aluno vê A, PA ou NA por indicador (A = 70% dos pontos ou mais; PA = 50% a 69%; NA = menos de 50%).'},
+ {t:'Pode consultar!',h:`<p class="grande-t">📚 LMS: <b>senac-lms.pages.dev</b></p><ul class="big"><li>Erros no Python: UC05, aulas A43, A46 e A49</li><li>pandas e groupby: UC05, aulas A37 e A40</li><li>SELECT, GROUP BY, JOIN: UC08, Plantão da Vigilância</li><li>GRANT e REVOKE: UC08, aulas A47 e A61</li><li>No jogo: botão 📖 Consultar (resumo de cada assunto)</li></ul><p class="grande-t">🚫 IA não. As respostas vão direto para o professor.</p>`,n:'Consultar é estudar: o jogo até dá conquista para quem consulta. O que não pode é colar ou pedir para a IA.'},
+ {t:'Relembrando: erros no Python',h:`<div class="grade2"><pre class="cod g">if livros > 3     # SyntaxError
+print(livrso)     # NameError
+"3" + 1           # TypeError
+int("três")       # ValueError
+lista[10]         # IndexError</pre><div><p class="grande-t">Receita:</p><ol class="big"><li>Ler a <b>última linha</b> (tipo)</li><li>Ir na <b>linha</b> indicada</li><li>Corrigir <b>uma</b> coisa</li><li>Rodar e testar</li></ol><p>Erro de <b>lógica</b>: roda sem mensagem, mas o resultado sai errado.</p></div></div>`,n:'Exemplos da biblioteca, diferentes do jogo. Lembre: input() devolve texto, por isso int(input()).'},
+ {t:'Relembrando: pandas e gráfico',h:`<pre class="cod g">livros = pd.DataFrame({"genero": ["HQ", "HQ", "Terror"],
+                       "emprestimos": [5, 3, 8]})
+livros.shape                                   # (3, 2)
+livros[livros["emprestimos"] > 4]              # filtro
+livros.groupby("genero")["emprestimos"].sum()  # HQ 8, Terror 8
+plt.bar(["HQ", "Terror"], [8, 8]); plt.show()</pre>`,n:'shape = (linhas, colunas). groupby junta por grupo e soma. plt.show() abre o gráfico.'},
+ {t:'Relembrando: SQL',h:`<pre class="cod g">SELECT titulo FROM livros WHERE ano > 2000;
+SELECT genero, COUNT(*) FROM livros GROUP BY genero;
+SELECT titulo FROM livros ORDER BY ano DESC LIMIT 3;
+SELECT l.titulo, a.nome FROM livros l
+  JOIN autores a ON a.id = l.autor_id;
+UPDATE livros SET ano = 2020 WHERE id = 7;  -- sem WHERE: TODAS!</pre>`,n:'WHERE filtra, GROUP BY agrupa, ORDER BY DESC + LIMIT pega os maiores, JOIN liga as tabelas pela chave.'},
+ {t:'Relembrando: permissões e backup',h:`<pre class="cod g">GRANT SELECT ON livros TO leitor_7;     -- só ler
+REVOKE SELECT ON livros FROM leitor_7;  -- tirar
+-- leitor_7 tenta DELETE → permission denied
+
+CREATE TABLE livros_bkp AS SELECT * FROM livros;          -- backup
+INSERT INTO livros SELECT * FROM livros_bkp WHERE id = 7; -- restaurar</pre><p class="grande-t">Menor privilégio: cada um recebe só o que precisa.</p>`,n:'Backup não tem aula própria no LMS. Este slide e o Manual de BD (13/11) são a referência.'},
+ {t:'Bora jogar! 🎮',h:()=>`<p class="grande-t">Abra o link que o professor mandou (LMS / Teams).</p><p class="link-g">${esc(location.origin+location.pathname)}</p><p class="grande-t">Digite o <b>nome completo</b>. Se aparecer ⚠️ "sem envio", você abriu sem o link do professor.</p>`,n:'Mande o link com a chave (Área do professor → 🔑 Chave de envio e link dos alunos). Confira se cada aluno vê "☁️ envio ligado".'},
+ {t:'🏆 Placar ao vivo',prof:1,h:()=>placarHTML(),n:'Clique em 🔄 para atualizar (lê o repositório). Mostra só nome e XP no projetor; a menção fica na Área do professor.'},
+ {t:'Correção do Desafio do Júri',prof:1,h:()=>`<div class="grade2"><pre class="cod g">${esc(PROF.M.A)}</pre><pre class="cod g">${esc(PROF.M.B.map((b,k)=>`${k+1}) ${b}`).join('\n'))}</pre></div>`,n:'X é o número de cada aluno. Peça que um aluno explique cada linha antes de mostrar.'},
+ {t:'O que cai sexta e sábado',h:`<div class="grade2"><div class="bloco"><h3>Sexta 27/11: Python</h3><p>Ind. 3: ler o erro, corrigir e testar</p><p>Ind. 4: pandas (shape, filtro, groupby) e gráfico</p></div><div class="bloco"><h3>Sábado 28/11: Banco de dados</h3><p>Ind. 5: SELECT, WHERE, GROUP BY, JOIN</p><p>Ind. 4: GRANT e REVOKE</p><p>Ind. 6: backup e restauração</p></div></div><p class="grande-t">Olhe o seu A / PA / NA: comece a revisão pelo NA.</p>`,n:'Feche perguntando qual pergunta foi a mais difícil. As 5 mais erradas estão na Área do professor.'}
+];
+let SL=0,NOTAS=false;
+async function abrirApresentacao(){SL=0;const d=document.createElement('div');d.id='apres';document.body.appendChild(d);desenharSlide();document.addEventListener('keydown',teclaApres)}
+function fecharApres(){const d=$('#apres');if(d)d.remove();document.removeEventListener('keydown',teclaApres);if(document.fullscreenElement)document.exitFullscreen().catch(()=>{})}
+function teclaApres(e){if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();irSlide(1)}else if(e.key==='ArrowLeft'||e.key==='PageUp'){irSlide(-1)}else if(e.key==='Escape')fecharApres();else if(e.key==='n'||e.key==='N'){NOTAS=!NOTAS;desenharSlide()}else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen().catch(()=>{})}}
+function irSlide(d){SL=Math.max(0,Math.min(SLIDES.length-1,SL+d));desenharSlide()}
+function desenharSlide(){const s=SLIDES[SL],d=$('#apres');if(!d)return;const bloq=s.prof&&!PROF;
+ d.innerHTML=`<div class="slide"><div class="sl-topo"><span>Senac PR • Técnico em IA • Aquecimento 26/11</span><span>${SL+1}/${SLIDES.length}</span></div>
+ <h1>${s.t}</h1>${s.sub?`<h2 class="sl-sub">${s.sub}</h2>`:''}<div class="sl-corpo">${bloq?`<p class="grande-t">🔒 Só para o professor.</p><button id="slSenha" class="grande">Abrir com a senha</button>`:(typeof s.h==='function'?s.h():s.h)}</div>
+ ${NOTAS?`<div class="notas">📝 ${esc(s.n||'')}</div>`:''}
+ <div class="sl-nav"><button class="sec" id="slAnt">◀</button><button class="sec" id="slNot">N notas</button><button class="sec" id="slFs">F tela cheia</button><button class="sec" id="slSair">Sair</button><button class="sec" id="slProx">▶</button></div></div>`;
+ $('#slAnt').onclick=()=>irSlide(-1);$('#slProx').onclick=()=>irSlide(1);$('#slSair').onclick=fecharApres;$('#slNot').onclick=()=>{NOTAS=!NOTAS;desenharSlide()};
+ $('#slFs').onclick=()=>teclaApres({key:'f'});const bs=$('#slSenha');if(bs)bs.onclick=async()=>{if(await pedirSenha()){await carregarRepo();desenharSlide()}};
+ const ba=$('#plAtual');if(ba)ba.onclick=async()=>{ba.disabled=true;await carregarRepo();desenharSlide()}}
+function placarHTML(){const L=Object.values(PROF.L).map(s=>({n:s.nome.split(' ').slice(0,2).join(' '),xp:xpTotal(s),nv:nivel(xpTotal(s)).n,c:conquistas(s).map(c=>c[0]).join('')})).sort((a,b)=>b.xp-a.xp).slice(0,10);
+ return`<table class="placar">${L.map((x,i)=>`<tr><td>${['🥇','🥈','🥉'][i]||i+1+'º'}</td><td>${esc(x.n)}</td><td>${x.nv[2]}</td><td><b>${x.xp}</b> XP</td><td>${x.c}</td></tr>`).join('')||'<tr><td>Nenhuma entrega ainda.</td></tr>'}</table><button id="plAtual" class="sec">🔄 Atualizar</button>`}
+
+$('#bApres').onclick=()=>abrirApresentacao();$('#bProf').onclick=()=>telaProf();
+window.addEventListener('beforeunload',e=>{if(S&&S.sujo&&temChave()){enviar('saída');e.preventDefault();e.returnValue=''}});
+telaInicio();
+</script></body></html>
