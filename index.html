@@ -19,7 +19,7 @@ label{display:block;font-weight:bold;margin:8px 0}
 .hud{display:flex;gap:16px;align-items:center;background:#fff;border-radius:14px;padding:10px 16px;border:2px solid var(--borda);flex-wrap:wrap}.hudnv{flex:1;min-width:220px}.nv{font-weight:bold;color:var(--az)}
 .hudc{display:flex;gap:10px;align-items:center;font-size:20px;flex-wrap:wrap}.envio{font-size:13px;color:var(--peq)}.combo{background:#ffe1c2;color:#b34700;border-radius:12px;padding:2px 8px;font-weight:bold}
 .xpbar{height:12px;background:#eee;border-radius:8px;overflow:hidden;margin:4px 0;min-width:120px}.xpbar i{display:block;height:100%;background:linear-gradient(90deg,var(--lar),#ffc400)}
-.mapa{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:14px 0}
+.mapa{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:14px 0}
 .estande{background:#fff;border-radius:18px;padding:16px;border:3px dashed var(--lar);text-align:center;position:relative}.estande.fim{border-style:solid;border-color:var(--ok)}.estande.trancado{opacity:.6;border-color:#aaa}
 .estande .ic{font-size:54px}.estande h3{margin:6px 0;color:var(--az)}
 .pontos{display:flex;gap:5px;justify-content:center;margin:8px 0}.pontos i{width:14px;height:14px;border-radius:50%;background:#ddd;display:inline-block}.pontos i.ok{background:var(--ok)}.pontos i.meio{background:var(--meio)}.pontos i.tent{background:#f6b4ab}
@@ -54,7 +54,7 @@ table.mini{max-width:760px;margin:10px auto}.bugs td:first-child,.bugs td:nth-ch
 <div id="app"></div>
 <script>
 const CHAVE_PUBLICA='MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAx5blW/FZqezUw9FDUjw5nlFvr8Ft+Ap+bgkt11PW1c7ZovyT+c98/yGxoWqRhahA/G0i4/Bpxvmp8tEKwFns5b7Eb5cUQ4Lq6fMzY11RurDnVkDkKYKmjFjuZh1nEsZTki6XT+h0U3nv1VQcRtNYFjjtpHA4sEsrnVcr1iJhfZMhhgK3/wox1kUx4zj1j31MydD/XOjm+urB5FUJV7NvpqGly7BgPxB1728KdmfW+Zj8BuDg/rw7xV4+5x22A8YW8h5do0b6t7ABV+OYrJYy4z/2t4kTQYa17ho+M4K4lXX3WIX7a+z6e99/4DTFgIgbY2IEofLcrU63rlpsb7/ycQIDAQAB';
-const COFRE={"s":"wyb//c1UNGgfnoRHwQsXCg==","i":"qVjfuLjNVlgYBNhL","c":"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"};
+const COFRE={"s":"IxsuSF+fawanzj9XJfviNQ==","i":"t2+xsktgB4E0lYDj","c":"0jrquDysLlxv3mbmCk6cKs/3VDbnZ9nHPJ41je0oD0WygHX1XtOOy/YWKUnTwAdjwf5c8FnygC8xCkiaq7bhLVp64sVupU+RAVo3fSZdZww4+5tLFDfQraRwd2w5JWeTpOd/6rPxqrVODM8vtHD5JB/cmeg7YePgZZpBiwsIJdPLq0apH7XGefsuiVEacTCSLhWgAyJE/bLge2Ejf9/8FuLHmJjVOjlscAXTD6zA+Dmuu0+68ts+D7kyxLvlw7Nd3RyYH/SDDoYVX+xuhvxMc/ESNUg4NPCY390wHqTBdhzbknpJqYXYK/86zuYGdqTE+f2A/MXT7zo8HJFKO9w9NwZyMRPN4hIKnvRped3VkXbt+3N2EuRDQgMVXaq3DOhuyuOKjWZSxDpd6W7QBhEDRi5k5blTC4LLmKp2QgsAhCaBAkGxEaTrG5FVY1/W5++fW6gl9bLePEhEIytPlaFTKR4waJ3F/BIh4JRCl/Cg7ZE3BFXuopDxJZTuZ+qBB2sz3s0X7XHsWKxEdGhznmieQxmerAEzXE1Wl6Chh0X4YXhPxHrLkLE4zldE98iRdf9mEHxZYNCcHJbpnpEtpPMqJopvqATmr/uv/evih6rtexl1cp2+pwG+TAAbEfm19An0wUxBRAAz9Z71pMG5K3VDSj4wrRyz9sIgdldZ/Es3HxITaaD5eTGzauVqnVvpzt3pb1Q4vvdXrPTBpH/NVHYYDBZUZMFAGGd4EMhIxmwWbYKm9yiiD4lb9iKoAkKyuRU0rxO5RU7SgP5iSqeWUVREPbj1gQFWh+UgX8KNk5ka0vRnTto1WmJT9CUojP2wgfAcx5Jfs/+nc7V6kPGyG7gfRQS/M/suY0BT9vjMNyeKIm/II63e2Qc/vgy5E6u39r6mP9QD0fkb2ldKiNwOaO3cpkDMlNA7wpJmKoEzuKeV5JiF2uV9xWfN9xIpi3fhWvu/NasEYJE2NEPq0NBVxyyFYu7y1+7snrjwggQUv4De68h9ExqO1edUFxjmwSfo6mQC4QC6gLWOdef7BWWhmlOdUFBF+kVOXE1AnMpJWPn3jxEvv5dddPbLSTiTweNxS1lY1B1xXXaQvzAk9QhF0BEDsBJuShJAvyhDIJulZBvE3mTNlSEY/Ww3F7iiYtQeOupuA4ddeFN95smmWVVAXBHyMXMiFy+yOglhbcfPH8TcBkEFLoCcUfKxT/H406jDyEEYTlVXNU+AJb3NOzGRYuxI8lzgv8Oh6bL5A7ovpBgd+aZf2PYJOMkF5ttX0YM68Y5eW9GhlkAFN2QVrv+hoMe/vg6OzhLt7AL9zJ8DSnubKbcE2bTiDdTwGLv5PCHoVkqUAB6h6E8j7f+xlab2pyOyUEeAItHNs7Kslg85gXiNb/sr1hqAygkma5XnKODq/bIHOfXaNh8GnIg7DesfzFzJWK05WkgPi9Jdc7jGcWb9IKoevSqB6UMQGjR+Fh2cbDuvs/rG+SgwvhfMLg0HjQQh2MPj+kXAbiVpZ/9Ty0zOSasz60vXr4BDqST+CYG4nNCoi9KNGFw4rKitXEopSAnB/GG+9z7aNa3BZDR5CdVMoNSDNtYw1t49kT/NW4eiKiVF2Hyn/5m6HY4U9rDTNjQs8bONvsP8KHIIFNqkxosGWT/tC2QGxC/BGdSK36xI69IPcGIldcd0Vl6mbuGMadQwXf4QTryuLkALcdX7c/g78KcKKqX4FnW28itPom6M3RHplU4vqRhS+sthTD5C45/QLxpZW3PHbhD9YpnInXJCejgiqdvd5gFgM9K8z2OUvYrPZhbCQgPQtRNsiMJqmOjHX0irxin/ZDtJEemaf2i396ETRjsBCyUOXYqjI166wHu3g4vYTkit/Mr6ytR7VcIqmKkutIEfP/os2JufFRtpYpdrbGy5PlLaFxb07HxRYZpir74yI/LMyB+fDq4A6btKl93RvnbmiWVmVh9rhtxThHqmWUpOxqxd7c3jddhrTnkw0w4kENpvxBPZMv2NOv1u/mRpQkyDld1c4yVLhcY2KLyr/P2HpS5hasKXHL0a5LGKRcEVRkf+Im556MBXElplHg2d7HuLlX8amC3wroYgX3Mw+bjStBJUXct5ZajstyZZQnsnkC/FrBM9JFrfZFqE+gQErvOpsMDU82dRhbOpxsIU2fJkFB4w57DYOp8MN+iS+aR5fN0WPDqEHPCC2wpV2XK+tairCcjHx0Qu62984yXn6PBEoZRcH4Lpt99XrT3ed5T3tGM8rXZick9H6+8GPhw3O/yX624f9vPjlsR/tZqkIEgOqRcTM7xs1bcb65H540oHuDE1AAnKJuQ40NauEp22SnbY47o3nHXgeTcxS3ZRNqSVtNRel0gtDueMNoYSkILUI0pKNlUPxEFANPlMOtBQtVEEWUEOBNNY9vGb7k29HOhUMgCNNxjhz41h+QNxNIM82x7MAWMyAyyVYmhYYob8czqUzJiPqU2+xttYSJMnb5++rl1fb3Qr4dUsVEN8d6zXODn9uMMstobHHCmNnUK6FaPHJmE08aAdJXzjZ0/5Y7RZFO8/CK+eDFW6a1RUlK6WeSMEV9c89wz2GHT4C05stdNzJgX7qO1uRZJb0yOs1+ycR7qmRteW3Vf0BuTJmdofmtMgZ/vsCMjoCNk5zTmlhSmQCVgOTAQvCAiqjtL25MMRKn1xBoV7irRmXWlQvNptAtT899iprWg+S/fJIMfrjnsmtDTSXXaWdwgq1E4bOQEKKR6MieIrRcIhWHhpKsr25o8y8ADz4ZWFpj2l38V+JSjjXKNuJStq6oQT7LgNxkRQjCqtLnlUVgXqAqD1Rugf10scZITJgfnNQ89SzzxgiYMWNQSzKZJDmtk4US7WPB2Tl3wLyMpOBTcrI9w+wnBR7ZOkI2RlVCvb67JDxFP6GoHgsucc8X2EYclGEcLhk4LEpu1LWA5kMEN70hyaw1I8c/OwSipGH3uoJzbDZP16LLt2ohQvZKhNHRvqZ7TJgqvTO16TdQwWpu8pPR9bAH5SMqchqEGXVtISE+3cuS1pjTv0OiRwghtnnM+xGrMARogkbT62+dEib6re6fVqDDxn+Ej5iIIZHbPwtHRaVueveZ0kv7PfhTN7y/Hiupig3H+yrT+8vGg8BUfXdzMRae0N2mmnod6RpKj/DYydOeGA9nU9UJOF0uHy"};
 // ===================== DADOS: Feira de Ciências (aquecimento 26/11, turma 202600029) =====================
 // 20 perguntas: Python (ind. 3 e 4, avaliação de sexta 27/11) e Banco de dados (ind. 4, 5 e 6, sábado 28/11).
 // A resposta certa fica embaralhada em "k" (ver certa()). As respostas modelo do desafio ficam CIFRADAS (build.js).
@@ -120,6 +120,22 @@ GRANT SELECT, INSERT ON livros TO bibliotecaria;
 REVOKE SELECT ON livros FROM leitor_7;  -- tira a permissão</pre>
 <p>Se o usuário tentar algo que não recebeu (ex.: DELETE só com SELECT), o PostgreSQL responde <b>permission denied</b>.</p>
 <p><b>Menor privilégio:</b> cada usuário recebe só a permissão de que precisa para o trabalho dele.</p>`},
+ redes:{t:'Protocolos e serviços',onde:'Redes/GPU (UC06, ind. 4): vídeos do NIC.br do Forms de 05/11 e material de apoio de Redes',
+  html:`<table><tr><th>Camada TCP/IP</th><th>Exemplos</th></tr><tr><td>Aplicação</td><td>HTTP/HTTPS, DNS, DHCP</td></tr><tr><td>Transporte</td><td>TCP (confirma e reenvia) • UDP (rápido, sem confirmação)</td></tr><tr><td>Internet</td><td>IP (IPv4, IPv6)</td></tr><tr><td>Acesso à rede</td><td>Wi-Fi, cabo, fibra</td></tr></table>
+<p><b>DHCP</b> entrega IP, máscara, gateway e DNS. Sem resposta do DHCP, o PC fica com <b>169.254.x.x</b>.<br><b>DNS</b> transforma nome em IP. <b>HTTPS</b> = HTTP com criptografia.</p>
+<pre>ping 8.8.8.8          # o destino responde?
+nslookup www.ufpr.br  # qual é o IP do nome?
+tracert www.ufpr.br   # por onde o pacote passa?
+ipconfig /all         # meu IP, gateway, DNS, DHCP</pre>`},
+ ip:{t:'IPv4 e IPv6',onde:'Redes/GPU (UC06, ind. 5): vídeos do NIC.br do Forms de 05/11 e material de apoio de Redes',
+  html:`<table><tr><th></th><th>IPv4</th><th>IPv6</th></tr><tr><td>Tamanho</td><td>32 bits</td><td>128 bits</td></tr><tr><td>Escrita</td><td>4 números (0 a 255) com pontos</td><td>8 grupos hexadecimais com :</td></tr><tr><td>Exemplo</td><td>10.0.5.20</td><td>2001:db8:a::5</td></tr></table>
+<p>O IPv6 existe porque os endereços IPv4 acabaram (NAT/CGNAT é remendo).</p>
+<pre>128  64  32  16   8   4   2   1
+  1   1   1   0   0   0   0   0  = 224
+
+Rede 10.0.5.0/24 (máscara 255.255.255.0)
+PCs: 10.0.5.1 a 10.0.5.254   •   broadcast: 10.0.5.255</pre>
+<p><b>Abreviar IPv6:</b> tire os zeros à esquerda (0db8 → db8) e troque UMA sequência de grupos zerados por <code>::</code>.</p>`},
  bkp:{t:'Backup e restauração',onde:'Backup não tem aula própria no LMS: use este resumo e o Manual de BD feito à mão (13/11)',
   html:`<pre>CREATE TABLE livros_bkp AS SELECT * FROM livros;   -- cópia de segurança
 -- alguém apagou o livro 7 por engano:
@@ -148,13 +164,24 @@ const Q=[
  {f:'bd',ind:'BD 4',g:'perm',p:'Qual comando TIRA a permissão do jurado?',c:'',o:['REVOKE SELECT ON projetos FROM jurado_3;','DROP TABLE projetos;','DELETE jurado_3;','GRANT NONE TO jurado_3;'],k:0,e:'GRANT dá a permissão; REVOKE tira.'},
  {f:'bd',ind:'BD 6',g:'bkp',tab:1,p:'O que este comando faz?',c:'CREATE TABLE projetos_bkp AS\nSELECT * FROM projetos;',o:['Uma cópia de segurança da tabela','Apaga a tabela','Cria uma tabela vazia','Dá permissão'],k:3,e:'Cria projetos_bkp com todas as linhas: é um backup simples.'},
  {f:'bd',ind:'BD 6',g:'bkp',tab:1,p:'Alguém apagou o projeto 4. Como restaurar a partir da cópia?',c:'',o:['INSERT INTO projetos SELECT * FROM projetos_bkp WHERE id = 4;','DELETE FROM projetos_bkp;','UPDATE projetos SET id = 4;','DROP TABLE projetos_bkp;'],k:2,e:'Copia a linha de volta da tabela de backup. Testado no PostgreSQL.'},
+ {f:'rd',ind:"Redes 4",g:'redes',p:"A urna online da feira fica em www.feira.escola. Quem transforma esse nome no IP do servidor?",c:"",o:["DNS", "DHCP", "HTTP", "UDP"],k:1,e:"O DNS é a \"agenda de contatos\" da internet: nome → IP."},
+ {f:'rd',ind:"Redes 4",g:'redes',p:"O notebook do estande ficou com este IP. O que falhou?",c:"IPv4: 169.254.10.5",o:["O DNS caiu", "O DHCP não entregou um IP", "O HTTPS bloqueou", "O cabo HDMI"],k:1,e:"169.254.x.x é o IP que o próprio Windows inventa quando o DHCP não responde."},
+ {f:'rd',ind:"Redes 4",g:'redes',p:"A premiação vai ser transmitida ao vivo. Que protocolo de transporte segue em frente sem reenviar o que se perdeu?",c:"",o:["TCP", "UDP", "DNS", "DHCP"],k:0,e:"Ao vivo, reenviar um pedaço velho não adianta: o UDP é mais rápido e não confirma a entrega."},
+ {f:'rd',ind:"Redes 4",g:'redes',p:"Qual comando mostra por quais roteadores o pacote passa até o site da feira?",c:"",o:["ping", "nslookup", "tracert", "ipconfig"],k:0,e:"tracert lista cada salto (roteador) do caminho. ping só diz se responde; nslookup mostra o IP do nome."},
+ {f:'rd',ind:"Redes 4",g:'redes',p:"O site de votação começa com https://. O que o S acrescenta?",c:"",o:["Criptografia na conexão", "Mais velocidade", "Um IP fixo", "O DNS"],k:1,e:"HTTPS = HTTP com criptografia (TLS): ninguém no caminho lê os votos."},
+ {f:'rd',ind:"Redes 5",g:'ip',p:"Quantos bits tem um endereço IPv4?",c:"",o:["8", "32", "64", "128"],k:1,e:"IPv4 = 4 números de 8 bits = 32 bits. O IPv6 tem 128."},
+ {f:'rd',ind:"Redes 5",g:'ip',p:"A rede da feira é 10.0.7.0/24. Qual IP pode ir para um notebook?",c:"",o:["10.0.7.0", "10.0.7.255", "10.0.8.3", "10.0.7.25"],k:2,e:"Na /24 os 3 primeiros números são a rede. .0 é a rede, .255 é broadcast e 10.0.8.x é outra rede."},
+ {f:'rd',ind:"Redes 5",g:'ip',p:"Qual é a forma abreviada correta?",c:"2001:0db8:0000:0000:0000:0000:0000:0042",o:["2001:db8::42", "2001:db8:0:0::42::", "2001::db8::42", "2001:db8:42"],k:2,e:"Tira os zeros à esquerda e troca UMA sequência de grupos zerados por ::."},
+ {f:'rd',ind:"Redes 5",g:'ip',p:"Quanto vale este byte em decimal?",c:"11000000",o:["3", "128", "192", "255"],k:3,e:"128 + 64 = 192 (soma os pesos onde tem 1)."},
+ {f:'rd',ind:"Redes 5",g:'ip',p:"Por que o IPv6 foi criado?",c:"",o:["Os endereços IPv4 acabaram", "O IPv4 não funciona no Wi-Fi", "Para substituir o DNS", "Para deixar o ping mais rápido"],k:0,e:"O IPv4 tem cerca de 4,3 bilhões de endereços: acabou. O IPv6 tem endereços de sobra."},
 ];
 // resposta certa: índice embaralhado por posição (não é segredo forte; é só para não ficar óbvio no código)
 const certa=i=>((Q[i].k-(i*3+1))%4+8)%4;
 const ESTANDES=[
  {id:'py',nome:'Estande 1: Laboratório de Python',ic:'🐍',desc:'Depuração (ind. 3) e pandas/gráfico (ind. 4). Cai na sexta, 27/11.',qs:[0,1,2,3,4,5,6,7,8,9]},
  {id:'bd',nome:'Estande 2: Banco de dados da Feira',ic:'🗄️',desc:'Consultas (ind. 5), permissões (ind. 4) e backup (ind. 6). Cai no sábado, 28/11.',qs:[10,11,12,13,14,15,16,17,18,19]},
- {id:'des',nome:'Estande 3: Desafio do Júri',ic:'🏆',desc:'Caça aos erros e 4 comandos para escrever. Abre depois dos estandes 1 e 2.'}
+ {id:'rd',nome:'Estande 3: Rede da Feira',ic:'📡',desc:'Protocolos e serviços (ind. 4) e IPv4/IPv6 (ind. 5). Cai em 03 e 04/12.',qs:[20,21,22,23,24,25,26,27,28,29]},
+ {id:'des',nome:'Estande 4: Desafio do Júri',ic:'🏆',desc:'Caça aos erros e 6 respostas para escrever. Abre depois dos estandes 1, 2 e 3.'}
 ];
 // Desafio A: caça aos erros (o total certo é 44 + X)
 const BUG_COD=['votos = [14, 9, 21]','extra = input("Votos extras: ")','total = 0','for v in votos','    total = v','total = total + extra','print("Total:", totl)'];
@@ -175,10 +202,14 @@ const CMDS=[
  {ind:'BD 4',p:X=>`SQL: o usuário jurado_${X} só pode LER a tabela projetos.`,ph:'GRANT ...',
   ok:(t,X)=>new RegExp(`grant\\s+select\\s+on\\s+(table\\s+)?projetos\\s+to\\s+"?jurado_${X}\\b`,'i').test(t),dica:X=>`GRANT + a permissão de leitura + ON projetos + TO jurado_${X} (o seu número é ${X}).`},
  {ind:'BD 6',p:'SQL: faça uma cópia de segurança da tabela projetos.',ph:'CREATE TABLE ...',
-  ok:(t,X)=>/create\s+table\s+\w+\s+as\s+select\s+\*\s+from\s+projetos/i.test(t),dica:'CREATE TABLE nome_da_copia AS SELECT tudo FROM projetos.'}
+  ok:(t,X)=>/create\s+table\s+\w+\s+as\s+select\s+\*\s+from\s+projetos/i.test(t),dica:'CREATE TABLE nome_da_copia AS SELECT tudo FROM projetos.'},
+ {ind:'Redes 4',p:'Redes: escreva o comando que testa se o servidor da urna (IP 10.0.7.1) responde.',ph:'comando...',
+  ok:(t,X)=>/^\s*ping\s+10\.0\.7\.1\s*$/i.test(t),dica:'É o comando que manda um "eco" e espera a resposta, seguido do IP.'},
+ {ind:'Redes 5',p:X=>`Redes: o estande usa a rede 192.168.${X}.0/24. Escreva o primeiro e o último IP que podem ir para os notebooks.`,ph:'primeiro e último',
+  ok:(t,X)=>new RegExp(`192\\.168\\.${X}\\.1\\b`).test(t)&&new RegExp(`192\\.168\\.${X}\\.254\\b`).test(t),dica:X=>`Na /24 o .0 é a rede e o .255 é o broadcast. Use 192.168.${X}.…`}
 ];
 const FATOR=[1,0.7,0.4];// pontos por tentativa (1ª, 2ª, 3ª)
-const NIVEIS=[[0,'Visitante','🎟️'],[700,'Expositor','🧪'],[1500,'Monitor','🔬'],[2300,'Jurado','🏅'],[3100,'Campeão da Feira','🏆']];
+const NIVEIS=[[0,'Visitante','🎟️'],[1000,'Expositor','🧪'],[2200,'Monitor','🔬'],[3400,'Jurado','🏅'],[4600,'Campeão da Feira','🏆']];
 
 // ===================== MOTOR =====================
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const app=$('#app');
@@ -215,11 +246,12 @@ const CONQ=[
  ['🔎','Mestre do SELECT','Acertou de primeira as consultas (11 a 15)',s=>[10,11,12,13,14].every(i=>primeira(s,i))],
  ['🛡️','Guardião do GRANT','Acertou de primeira as de permissões (16 a 18)',s=>[15,16,17].every(i=>primeira(s,i))],
  ['💾','Backup em dia','Acertou de primeira as de backup (19 e 20)',s=>[18,19].every(i=>primeira(s,i))],
+ ['📡','Mestre da rede','Acertou de primeira as de redes (21 a 30)',s=>[20,21,22,23,24,25,26,27,28,29].every(i=>primeira(s,i))],
  ['🔥','Combo 5','5 acertos seguidos de primeira',s=>s.maxComb>=5],
  ['⚡','Combo 10','10 acertos seguidos de primeira',s=>s.maxComb>=10],
  ['📚','Pesquisador','Consultou o material 3 vezes',s=>s.lms>=3],
  ['🧩','Detetive do júri','Achou os 4 erros do programa',s=>s.dA.acertos===4],
- ['✍️','Escritor de comandos','Escreveu os 4 comandos certos',s=>s.dB.every(b=>b.ok)],
+ ['✍️','Escritor de comandos','Acertou as 6 respostas escritas',s=>s.dB.every(b=>b.ok)],
 ];
 const conquistas=s=>CONQ.filter(c=>c[3](s));
 function verConquistasNovas(antes){const ag=conquistas(S).map(c=>c[1]);for(const c of conquistas(S))if(!antes.includes(c[1])){festa();toast(`${c[0]} Conquista: ${c[1]}!`,3500)}return ag}
@@ -232,7 +264,7 @@ function barraTopo(){if(!S)return'';const xp=xpTotal(S),{n,prox}=nivel(xp);const
 // ===================== TELAS DO ALUNO =====================
 function telaInicio(){S=null;const ss=(()=>{try{return JSON.parse(sessionStorage.getItem(CH+'atual')||'null')}catch(e){return null}})();
  app.innerHTML=`<div class="hero"><div class="faixa">Técnico em IA • Turma 202600029 • Aquecimento 26/11</div>
- <h1>🎪 Feira de Ciências</h1><p class="sub">O sistema da feira tem bugs, uma tabela de votos e jurados que precisam de permissão. Conserte tudo, ganhe XP e prepare-se para <b>sexta (Python)</b> e <b>sábado (Banco de dados)</b>.</p>
+ <h1>🎪 Feira de Ciências</h1><p class="sub">O sistema da feira tem bugs, uma tabela de votos, jurados que precisam de permissão e uma rede para funcionar. Conserte tudo, ganhe XP e prepare-se para as avaliações de <b>Python (27/11)</b>, <b>Banco de dados (28/11)</b> e <b>Redes/GPU (03 e 04/12)</b>.</p>
  <div class="card entrar"><h2>Entrar no jogo</h2><label>Seu nome completo<input id="nome" autocomplete="off" placeholder="Nome e sobrenome"></label>
  <button id="bEntrar" class="grande">🎮 Começar</button>
  ${ss?`<p class="peq">Continuar nesta aba: <a href="#" class="cont" data-n="${esc(ss.nome)}">${esc(ss.nome)}</a></p>`:''}
@@ -244,18 +276,18 @@ function entrar(){const bruto=$('#nome').value;const nome=titulo(bruto);const pa
  if(partes.length<2){toast('Digite o nome completo: nome e sobrenome.');return}
  let salvo=null;try{salvo=JSON.parse(sessionStorage.getItem(CH+'atual')||'null')}catch(e){}if(salvo&&normNome(salvo.nome)!==normNome(nome))salvo=null;
  if(!salvo&&partes.length<3&&!confirm(`Confirma o nome "${nome}"? Use o nome completo, igual ao da chamada.`))return;
- S=salvo&&salvo.jogo===JOGO?salvo:novoEstado(nome);salvar();iniciarEnvioAuto();telaMapa()}
-function telaMapa(){const e1=ESTANDES[0],e2=ESTANDES[1],e3=ESTANDES[2];const lib=estandeFeito(S,e1)&&estandeFeito(S,e2);
+ S=salvo&&salvo.jogo===JOGO?salvo:novoEstado(nome);while(S.dB.length<CMDS.length)S.dB.push({t:'',tent:0,ok:false,pts:0});salvar();iniciarEnvioAuto();telaMapa()}
+function telaMapa(){const QS=ESTANDES.filter(e=>e.qs),D=ESTANDES[ESTANDES.length-1];const lib=QS.every(e=>estandeFeito(S,e));
  const card=(e,i)=>{const feitos=e.qs.filter(q=>feito(S,q)).length,ok=e.qs.filter(q=>primeira(S,q)).length;const fim=feitos===e.qs.length;const m=medalha(S,e);
   return`<div class="estande ${fim?'fim':''}" data-e="${i}"><div class="ic">${e.ic}</div><h3>${e.nome}</h3><p class="peq">${e.desc}</p>
   <div class="pontos">${e.qs.map(q=>`<i class="${primeira(S,q)?'ok':feito(S,q)?'meio':S.r[q]?'tent':''}"></i>`).join('')}</div>
   <p>${fim?`${m[0]} Medalha de ${m[1]} • ${ok}/10 de primeira`:`${feitos}/10 feitas`}</p><button>${fim?'Rever':'Jogar'}</button></div>`};
  const dfeito=desafioFeito(S);
- app.innerHTML=barraTopo()+`<div class="mapa">${card(e1,0)}${card(e2,1)}
- <div class="estande ${lib?'':'trancado'} ${dfeito?'fim':''}" data-e="2"><div class="ic">${lib?e3.ic:'🔒'}</div><h3>${e3.nome}</h3><p class="peq">${e3.desc}</p>
- <p>${dfeito?`Concluído • ${(S.dA.pts||0)+(S.dA.totPts||0)+S.dB.reduce((a,b)=>a+b.pts,0)} XP`:lib?'Liberado!':'Termine os estandes 1 e 2'}</p><button ${lib?'':'disabled'}>${dfeito?'Rever':'Entrar'}</button></div></div>
+ app.innerHTML=barraTopo()+`<div class="mapa">${QS.map(card).join('')}
+ <div class="estande ${lib?'':'trancado'} ${dfeito?'fim':''}" data-e="${ESTANDES.length-1}"><div class="ic">${lib?D.ic:'🔒'}</div><h3>${D.nome}</h3><p class="peq">${D.desc}</p>
+ <p>${dfeito?`Concluído • ${(S.dA.pts||0)+(S.dA.totPts||0)+S.dB.reduce((a,b)=>a+b.pts,0)} XP`:lib?'Liberado!':'Termine os estandes 1, 2 e 3'}</p><button ${lib?'':'disabled'}>${dfeito?'Rever':'Entrar'}</button></div></div>
  <div class="linha centro"><button id="bConsulta" class="sec">📖 Resumo para consulta</button><button id="bEntrega" class="${dfeito?'grande':'sec'}">📤 Entregar para o professor</button><button id="bSair" class="sec">Sair</button></div>`;
- $$('.estande').forEach(d=>{const i=+d.dataset.e;d.querySelector('button').onclick=()=>{if(i<2){const e=ESTANDES[i];const prox=e.qs.find(q=>!feito(S,q));telaQ(prox??e.qs[0])}else telaDesafio()}});
+ $$('.estande').forEach(d=>{const i=+d.dataset.e;d.querySelector('button').onclick=()=>{const e=ESTANDES[i];if(e.qs){const prox=e.qs.find(q=>!feito(S,q));telaQ(prox??e.qs[0])}else telaDesafio()}});
  $('#bConsulta').onclick=()=>abrirConsulta(null);$('#bEntrega').onclick=telaEntrega;$('#bSair').onclick=async()=>{if(S.sujo&&temChave()){await enviar('saída')}try{sessionStorage.removeItem(CH+'atual')}catch(e){}telaInicio()}}
 function abrirConsulta(g){S.lms++;salvar();const ks=Object.keys(CONSULTA);const ini=g||ks[0];
  const m=document.createElement('div');m.className='modal';m.innerHTML=`<div class="card larga"><div class="linha"><h2 style="margin:0">📖 Consulta</h2><span style="flex:1"></span><button class="sec" id="mFechar">Fechar</button></div>
@@ -300,7 +332,7 @@ function monitorar(el,id){const m=MON[id]||(MON[id]={teclas:0,col:0,salto:0});
  el.addEventListener('paste',bloq);el.addEventListener('drop',bloq);
  el.addEventListener('beforeinput',e=>{if(e.inputType==='insertText'&&e.data&&e.data.length<=2)m.teclas+=e.data.length;if(e.data&&e.data.length>8&&e.inputType!=='insertCompositionText')m.salto=Math.max(m.salto,e.data.length);if(e.inputType==='insertFromPaste'||e.inputType==='insertFromDrop'){e.preventDefault();m.col++}})}
 function suspeito(id,txt){const m=MON[id];if(!m)return null;const n=txt.replace(/\s/g,'').length;const mot=[];if(n>12&&n>m.teclas*1.3+8)mot.push('texto apareceu sem ser digitado');if(m.salto>25)mot.push('bloco grande inserido de uma vez');if(/```|\*\*|—/.test(txt))mot.push('formatação típica de IA');return mot.length?mot:null}
-function telaDesafio(){if(!(estandeFeito(S,ESTANDES[0])&&estandeFeito(S,ESTANDES[1]))){toast('Termine os estandes 1 e 2 primeiro.');return telaMapa()}
+function telaDesafio(){if(!ESTANDES.filter(e=>e.qs).every(e=>estandeFeito(S,e))){toast('Termine os estandes 1, 2 e 3 primeiro.');return telaMapa()}
  const A=S.dA,X=S.X;const fimA=A.acertos===4||A.tent>=3;const fimT=A.totOk||A.totTent>=3;
  const opsL=v=>`<option value="">linha</option>${[1,2,3,4,5,6,7].map(n=>`<option ${+v===n?'selected':''}>${n}</option>`).join('')}`;
  const opsT=v=>`<option value="">tipo do erro</option>${TIPOS.map(t=>`<option ${v===t?'selected':''}>${t}</option>`).join('')}`;
@@ -312,7 +344,7 @@ function telaDesafio(){if(!(estandeFeito(S,ESTANDES[0])&&estandeFeito(S,ESTANDES
  <div class="linha">${fimA?`<div class="fb ${A.acertos===4?'bom':'ruim'}">${A.acertos===4?'✅ Você achou e corrigiu os 4 erros!':`Você achou ${A.acertos} de 4. O professor mostra a correção no fim.`} +${A.pts} XP</div>`:`<button id="bConfA">Conferir a parte A (tentativa ${A.tent+1} de 3)</button>${A.tent?`<span class="peq">Última conferência: ${A.acertos} de 4 certos.</span>`:''}`}</div>
  <p style="margin-top:14px">Depois de consertar, se você digitar <b>${X}</b> votos extras, qual total o programa mostra?</p>
  <div class="linha"><input id="tot" type="number" style="max-width:140px" value="${esc(A.total)}" ${fimT?'disabled':''}>${fimT?`<div class="fb ${A.totOk?'bom':'ruim'}">${A.totOk?`✅ Isso! +${A.totPts} XP`:'❌ Não foi. Confira a soma da lista e os votos extras.'}</div>`:`<button id="bConfT">Conferir (tentativa ${A.totTent+1} de 3)</button>`}</div>
- <h3>Parte B: escreva os comandos</h3>${CMDS.map((c,k)=>{const b=S.dB[k],fim=b.ok||b.tent>=3;const p=typeof c.p==='function'?c.p(X):c.p;const d=typeof c.dica==='function'?c.dica(X):c.dica;
+ <h3>Parte B: escreva os comandos e as respostas</h3>${CMDS.map((c,k)=>{const b=S.dB[k],fim=b.ok||b.tent>=3;const p=typeof c.p==='function'?c.p(X):c.p;const d=typeof c.dica==='function'?c.dica(X):c.dica;
   return`<div class="cmd"><p><span class="tag ind">${c.ind}</span> <b>${k+1}.</b> ${esc(p)}</p><textarea data-k="${k}" class="tb" rows="2" spellcheck="false" placeholder="${esc(c.ph)}" ${fim?'disabled':''}>${esc(b.t)}</textarea>
   <div class="linha">${fim?`<div class="fb ${b.ok?'bom':'ruim'}">${b.ok?`✅ Comando certo! +${b.pts} XP`:'❌ Ainda não ficou certo. O professor mostra a correção no fim.'}</div>`:`<button class="bConfB" data-k="${k}">Conferir (tentativa ${b.tent+1} de 3)</button>${b.tent?`<span class="peq">💡 ${esc(d)}</span>`:''}`}</div></div>`}).join('')}
  <div class="linha centro"><button id="bEnt" class="${desafioFeito(S)?'grande':'sec'}">📤 Entregar para o professor</button></div></div>`;
@@ -337,7 +369,7 @@ const mencao=p=>p>=70?'A':p>=50?'PA':'NA';
 const TXT_M={A:'Atendido',PA:'Parcialmente atendido',NA:'Não atendido'};
 async function telaEntrega(){S.ent=Date.now();salvar();const xp=xpTotal(S),{n}=nivel(xp);const ind=indicadores(S);
  app.innerHTML=barraTopo()+`<div class="card centro"><div class="medalha">${n[2]}</div><h2>${esc(S.nome)}: ${n[1]} com ${xp} XP</h2>
- <p>${ESTANDES.slice(0,2).map(e=>`${e.ic} ${medalha(S,e)[0]} ${medalha(S,e)[1]}`).join(' • ')} • 🏆 Desafio: ${desafioFeito(S)?'concluído':'incompleto'}</p>
+ <p>${ESTANDES.filter(e=>e.qs).map(e=>`${e.ic} ${medalha(S,e)[0]} ${medalha(S,e)[1]}`).join(' • ')} • 🏆 Desafio: ${desafioFeito(S)?'concluído':'incompleto'}</p>
  <h3>Como você está para a avaliação</h3>
  <table class="mini">${Object.entries(ind).map(([k,v])=>`<tr><td>${k}</td><td><span class="selo ${mencao(v)}">${mencao(v)}</span></td><td class="peq">${v}% dos pontos</td><td class="peq">${mencao(v)==='A'?'Tranquilo: revise rapidinho':mencao(v)==='PA'?'Revise antes da avaliação':'Atenção: comece a revisão por aqui'}</td></tr>`).join('')}</table>
  <p class="peq">A = 70% ou mais dos pontos do indicador • PA = de 50% a 69% • NA = menos de 50%. É um aquecimento: mostra onde revisar.</p>
@@ -350,7 +382,7 @@ async function telaEntrega(){S.ent=Date.now();salvar();const xp=xpTotal(S),{n}=n
  $('#bDe').onclick=vai;vai()}
 function baixar(nome,txt,tipo){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:tipo}));a.download=nome;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
 // ---------- indicadores (porcentagem de pontos por indicador) ----------
-function indicadores(s){const P={'Python ind. 3':[],'Python ind. 4':[],'BD ind. 4':[],'BD ind. 5':[],'BD ind. 6':[]};const mapa={'Python 3':'Python ind. 3','Python 4':'Python ind. 4','BD 4':'BD ind. 4','BD 5':'BD ind. 5','BD 6':'BD ind. 6'};
+function indicadores(s){const P={'Python ind. 3':[],'Python ind. 4':[],'BD ind. 4':[],'BD ind. 5':[],'BD ind. 6':[],'Redes ind. 4':[],'Redes ind. 5':[]};const mapa={'Python 3':'Python ind. 3','Python 4':'Python ind. 4','BD 4':'BD ind. 4','BD 5':'BD ind. 5','BD 6':'BD ind. 6','Redes 4':'Redes ind. 4','Redes 5':'Redes ind. 5'};
  Q.forEach((q,i)=>{const r=s.r[i];P[mapa[q.ind]].push(r&&r.ok?(r.a.length===1?1:.5):0)});
  const A=s.dA;if(A.tent)P['Python ind. 3'].push(A.acertos/4,A.acertos/4);else P['Python ind. 3'].push(0,0);P['Python ind. 3'].push(A.totOk?1:0);
  s.dB.forEach((b,k)=>P[mapa[CMDS[k].ind]].push(b.ok?(b.tent===1?1:b.tent===2?.7:.4):0));
@@ -405,7 +437,7 @@ async function decifrar(pac){const sub=crypto.subtle;const raw=await sub.decrypt
  const k=await sub.importKey('raw',raw,'AES-GCM',false,['decrypt']);return JSON.parse(new TextDecoder().decode(await sub.decrypt({name:'AES-GCM',iv:b64(pac.iv)},k,b64(pac.ct))))}
 async function pedirSenha(){if(PROF)return true;const p=prompt('Senha do professor:');if(p===null)return false;
  try{const c=await abrirCofre(p.trim());PROF={senha:p.trim(),...c,L:{}};return true}catch(e){toast('Senha errada.');return false}}
-function guardarAluno(s){const k=normNome(s.nome);const a=PROF.L[k];// vale a última entrega; se houver duas sessões, fica a de mais XP e a outra aparece no histórico
+function guardarAluno(s){while(s.dB.length<CMDS.length)s.dB.push({t:'',tent:0,ok:false,pts:0});const k=normNome(s.nome);const a=PROF.L[k];// vale a última entrega; se houver duas sessões, fica a de mais XP e a outra aparece no histórico
  if(!a){PROF.L[k]=s;return}const melhor=xpTotal(s)>xpTotal(a)||(xpTotal(s)===xpTotal(a)&&s.ts>a.ts)?s:a;melhor.outras=(a.outras||0)+1;PROF.L[k]=melhor}
 async function carregarRepo(){const tk=chaveEnvio();const r=await gh(PASTA,{token:tk});if(r.st===404)return{n:0};if(r.st!==200)return{erro:`não consegui ler a pasta respostas (código ${r.st}${r.st===403?': limite de leituras do GitHub, configure a chave de envio':''})`};
  const arqs=r.j.filter(f=>/\.json$/.test(f.name));const porId={};
@@ -417,7 +449,7 @@ async function carregarRepo(){const tk=chaveEnvio();const r=await gh(PASTA,{toke
 async function importarArquivos(files){let n=0;for(const f of files){try{const pac=JSON.parse(await f.text());const s=await decifrar(pac);guardarAluno(s);n++}catch(e){}}return n}
 function linhaAluno(s){const ind=indicadores(s);return{ind,xp:xpTotal(s),nv:nivel(xpTotal(s)).n}}
 const selo=m=>`<span class="selo ${m}">${m}</span>`;
-const IND_NOMES=['Python ind. 3','Python ind. 4','BD ind. 4','BD ind. 5','BD ind. 6'];
+const IND_NOMES=['Python ind. 3','Python ind. 4','BD ind. 4','BD ind. 5','BD ind. 6','Redes ind. 4','Redes ind. 5'];
 async function telaProf(){if(!await pedirSenha())return;
  app.innerHTML=`<div class="card"><div class="linha"><h2 style="margin:0">🔒 Área do professor</h2><span style="flex:1"></span><button class="sec" id="pSair">Sair</button></div><p id="pMsg" class="peq">Lendo as respostas no repositório...</p><div id="pCorpo"></div></div>`;
  $('#pSair').onclick=()=>{PROF=null;telaInicio()};
@@ -464,22 +496,22 @@ function telaAlunoProf(s){const l=linhaAluno(s),ord=i=>i;const A=s.dA,M=PROF.M;
  <table class="mini"><tr><th>Linha</th><th>Tipo</th><th>Correção digitada</th></tr>${A.linhas.map(x=>`<tr><td>${esc(x.l||'')}</td><td>${esc(x.t||'')}</td><td><code>${esc(x.c||'')}</code></td></tr>`).join('')}</table>
  <p>Total digitado: <b>${esc(A.total||'—')}</b> (certo: ${44+s.X}) ${A.totOk?'✅':'❌'}</p>
  <div class="modelo"><b>Modelo:</b><pre>${esc(M.A.replace(/X/g,s.X).replace(/44 \+ \d+/,'44 + '+s.X))}</pre></div>
- <h3>Desafio B: comandos</h3>${CMDS.map((c,k)=>{const b=s.dB[k];return`<div class="cmd"><p><span class="tag ind">${c.ind}</span> ${esc(typeof c.p==='function'?c.p(s.X):c.p)} ${b.ok?`✅ (${b.tent}ª tentativa)`:b.tent?`❌ (${b.tent} tentativa(s))`:'—'}</p><div class="lado"><div><b>Aluno</b><pre>${esc(b.t||'—')}</pre></div><div class="modelo"><b>Modelo</b><pre>${esc(M.B[k].replace(/_X\b/g,'_'+s.X))}</pre></div></div></div>`}).join('')}
+ <h3>Desafio B: comandos</h3>${CMDS.map((c,k)=>{const b=s.dB[k];return`<div class="cmd"><p><span class="tag ind">${c.ind}</span> ${esc(typeof c.p==='function'?c.p(s.X):c.p)} ${b.ok?`✅ (${b.tent}ª tentativa)`:b.tent?`❌ (${b.tent} tentativa(s))`:'—'}</p><div class="lado"><div><b>Aluno</b><pre>${esc(b.t||'—')}</pre></div><div class="modelo"><b>Modelo</b><pre>${esc((M.B[k]||'').replace(/_X\b/g,'_'+s.X).replace(/\.X\./g,'.'+s.X+'.'))}</pre></div></div></div>`}).join('')}
  ${s.sus.length||s.col?`<h3>⚠️ Atenção</h3><p>${s.col} tentativa(s) de colar. ${s.sus.map(x=>`${x.onde}: ${x.mot.join(', ')}`).join(' • ')}</p>`:''}`;
  $('#aVolta').onclick=desenharProf}
 // ---------- Excel com senha ----------
 function carregarXlsxLib(){return window.XlsxPopulate?Promise.resolve():new Promise((ok,erro)=>{const sc=document.createElement('script');sc.src='xlsx-populate.min.js';sc.onload=ok;sc.onerror=()=>erro(new Error('não carregou xlsx-populate.min.js'));document.head.appendChild(sc)})}
 async function excel(){const lista=Object.values(PROF.L).sort((a,b)=>a.nome.localeCompare(b.nome,'pt'));if(!lista.length){toast('Nenhuma entrega ainda.');return}
  $('#pXlsx').disabled=true;toast('Montando o Excel...');try{await carregarXlsxLib();const wb=await XlsxPopulate.fromBlankAsync();
- const sh=wb.sheet(0).name('Turma');const cab=['Aluno','X','XP','Nível',...IND_NOMES.flatMap(k=>[k,k+' %']),'Python (geral)','BD (geral)','Entregou','Colagens','Última atualização'];
- const linhas=lista.map(s=>{const l=linhaAluno(s);const py=Math.round((l.ind['Python ind. 3']+l.ind['Python ind. 4'])/2),bd=Math.round((l.ind['BD ind. 4']+l.ind['BD ind. 5']+l.ind['BD ind. 6'])/3);
-  return[s.nome,s.X,l.xp,l.nv[1],...IND_NOMES.flatMap(k=>[mencao(l.ind[k]),l.ind[k]]),mencao(py),mencao(bd),s.ent?'sim':'não',s.col||0,new Date(s.ts).toLocaleString('pt-BR')]});
+ const sh=wb.sheet(0).name('Turma');const cab=['Aluno','X','XP','Nível',...IND_NOMES.flatMap(k=>[k,k+' %']),'Python (geral)','BD (geral)','Redes/GPU (geral)','Entregou','Colagens','Última atualização'];
+ const linhas=lista.map(s=>{const l=linhaAluno(s);const py=Math.round((l.ind['Python ind. 3']+l.ind['Python ind. 4'])/2),bd=Math.round((l.ind['BD ind. 4']+l.ind['BD ind. 5']+l.ind['BD ind. 6'])/3),rd=Math.round((l.ind['Redes ind. 4']+l.ind['Redes ind. 5'])/2);
+  return[s.nome,s.X,l.xp,l.nv[1],...IND_NOMES.flatMap(k=>[mencao(l.ind[k]),l.ind[k]]),mencao(py),mencao(bd),mencao(rd),s.ent?'sim':'não',s.col||0,new Date(s.ts).toLocaleString('pt-BR')]});
  sh.cell('A1').value([cab,...linhas]);sh.row(1).style({bold:true,fill:{type:'solid',color:'003D76'},fontColor:'FFFFFF'});sh.freezePanes(1,1);
  const cor={A:'C6EFCE',PA:'FFEB9C',NA:'FFC7CE'};linhas.forEach((ln,r)=>ln.forEach((v,c)=>{if(cor[v])sh.row(r+2).cell(c+1).style({fill:{type:'solid',color:cor[v]},bold:true,horizontalAlignment:'center'})}));
  sh.column('A').width(34);for(let c=2;c<=cab.length;c++)sh.column(c).width(c===cab.length?20:12);
  const s2=wb.addSheet('Perguntas');s2.cell('A1').value([['Aluno',...Q.map((q,i)=>`${i+1}. ${q.ind}`)],...lista.map(s=>[s.nome,...Q.map((q,i)=>!s.r[i]?'':primeira(s,i)?'1ª':s.r[i].ok?'2ª':'errou')])]);s2.row(1).style({bold:true});s2.column('A').width(34);
  const s3=wb.addSheet('Desafio');s3.cell('A1').value([['Aluno','X','A: erros achados','A: total digitado','A: total certo',...CMDS.map((c,k)=>`B${k+1} (${c.ind})`),...CMDS.map((c,k)=>`B${k+1} certo?`)],...lista.map(s=>[s.nome,s.X,s.dA.acertos,s.dA.total,44+s.X,...s.dB.map(b=>b.t),...s.dB.map(b=>b.ok?'sim':'não')])]);s3.row(1).style({bold:true});s3.column('A').width(34);
- const s4=wb.addSheet('Critério');s4.cell('A1').value([['Aquecimento Feira de Ciências • Turma 202600029 • 26/11/2026'],['A = 70% ou mais dos pontos do indicador; PA = 50% a 69%; NA = menos de 50%.'],['Pontos: pergunta certa de primeira = 1; na segunda = 0,5. Desafio: 1ª tentativa 100%, 2ª 70%, 3ª 40%.'],['Python ind. 3 = perguntas 1 a 6 + caça aos erros; Python ind. 4 = 7 a 10 + comando B1; BD ind. 5 = 11 a 15 + B2; BD ind. 4 = 16 a 18 + B3; BD ind. 6 = 19 e 20 + B4.'],['Atividade formativa (aquecimento para as avaliações de 27/11 e 28/11).']]);s4.column('A').width(120);
+ const s4=wb.addSheet('Critério');s4.cell('A1').value([['Aquecimento Feira de Ciências • Turma 202600029 • 26/11/2026'],['A = 70% ou mais dos pontos do indicador; PA = 50% a 69%; NA = menos de 50%.'],['Pontos: pergunta certa de primeira = 1; na segunda = 0,5. Desafio: 1ª tentativa 100%, 2ª 70%, 3ª 40%.'],['Python ind. 3 = perguntas 1 a 6 + caça aos erros; Python ind. 4 = 7 a 10 + comando B1; BD ind. 5 = 11 a 15 + B2; BD ind. 4 = 16 a 18 + B3; BD ind. 6 = 19 e 20 + B4; Redes ind. 4 = 21 a 25 + B5; Redes ind. 5 = 26 a 30 + B6.'],['Atividade formativa (aquecimento para as avaliações de 27/11 Python, 28/11 Banco de dados e 03-04/12 Redes/GPU).']]);s4.column('A').width(120);
  const blob=await wb.outputAsync({type:'blob',password:PROF.senha});const nome='Aquecimento_Feira_26-11_respostas.xlsx';baixar2(nome,blob);
  const r=await gravarArquivo(`${PASTA}/${nome}`,ab64(await blob.arrayBuffer()),'Planilha das respostas do aquecimento (com senha)');
  toast(r.ok?'Excel baixado e salvo no repositório (pasta respostas). A senha é a da Área do professor.':'Excel baixado, mas não salvou no repositório: '+r.erro,5000)}catch(e){toast('Erro no Excel: '+e.message,5000)}$('#pXlsx').disabled=false}
@@ -488,11 +520,11 @@ function baixar2(nome,blob){const a=document.createElement('a');a.href=URL.creat
 // ===================== APRESENTAÇÃO (projetor) =====================
 // ← → ou clique para passar • N mostra/esconde as notas do professor • F tela cheia • Esc sai
 const SLIDES=[
- {t:'🎪 Feira de Ciências',sub:'Aquecimento: Python e Banco de dados',h:`<p class="grande-t">Técnico em IA • Turma 202600029 • 26/11</p>`,n:'Aquecimento sem peso de prova, mas com A, PA e NA por indicador: mostra onde cada aluno está para sexta (Python, ind. 3 e 4) e sábado (BD, ind. 4, 5 e 6).'},
- {t:'A missão',h:`<p class="grande-t">A escola vai fazer a <b>Feira de Ciências</b>. O sistema da feira está com problemas:</p><ul class="big"><li>🐍 o programa da urna tem bugs</li><li>🐼 os votos estão num DataFrame</li><li>🗄️ o banco guarda projetos e turmas</li><li>🛡️ os jurados precisam de permissão (só ler!)</li><li>💾 e alguém pode apagar um projeto sem querer</li></ul>`,n:'Conte a história: eles são a equipe de TI da feira. Cada estande do jogo é uma parte do sistema.'},
- {t:'Como vai ser hoje',h:`<table class="agenda"><tr><td>10h40</td><td>Apresentação e "Relembrando"</td></tr><tr><td>10h55</td><td>🐍 Estande 1: Laboratório de Python (10 perguntas)</td></tr><tr><td>11h15</td><td>🗄️ Estande 2: Banco de dados da Feira (10 perguntas)</td></tr><tr><td>11h30</td><td>🏆 Estande 3: Desafio do Júri (digitar)</td></tr><tr><td>11h45</td><td>Placar, correção e o que cai sexta e sábado</td></tr></table>`,n:'Se a turma atrasar, corte o tempo do Relembrando, não o do desafio.'},
+ {t:'🎪 Feira de Ciências',sub:'Aquecimento: Python, Banco de dados e Redes',h:`<p class="grande-t">Técnico em IA • Turma 202600029 • 26/11</p>`,n:'Aquecimento sem peso de prova, mas com A, PA e NA por indicador: mostra onde cada aluno está para sexta (Python, ind. 3 e 4), sábado (BD, ind. 4, 5 e 6) e 03-04/12 (Redes/GPU, ind. 4 e 5).'},
+ {t:'A missão',h:`<p class="grande-t">A escola vai fazer a <b>Feira de Ciências</b>. O sistema da feira está com problemas:</p><ul class="big"><li>🐍 o programa da urna tem bugs</li><li>🐼 os votos estão num DataFrame</li><li>🗄️ o banco guarda projetos e turmas</li><li>🛡️ os jurados precisam de permissão (só ler!)</li><li>💾 alguém pode apagar um projeto sem querer</li><li>📡 e a rede da feira precisa funcionar</li></ul>`,n:'Conte a história: eles são a equipe de TI da feira. Cada estande do jogo é uma parte do sistema.'},
+ {t:'Como vai ser hoje',h:`<table class="agenda"><tr><td>10h40</td><td>Apresentação e "Relembrando"</td></tr><tr><td>10h50</td><td>🐍 Estande 1: Laboratório de Python (10 perguntas)</td></tr><tr><td>11h05</td><td>🗄️ Estande 2: Banco de dados da Feira (10 perguntas)</td></tr><tr><td>11h20</td><td>📡 Estande 3: Rede da Feira (10 perguntas)</td></tr><tr><td>11h33</td><td>🏆 Estande 4: Desafio do Júri (digitar)</td></tr><tr><td>11h50</td><td>Placar, correção e o calendário das avaliações</td></tr></table>`,n:'Se a turma atrasar, corte o tempo do Relembrando, não o do desafio.'},
  {t:'Como ganhar XP',h:`<div class="grade2"><div class="bloco"><h3>Perguntas</h3><p>✅ de primeira: <b>100 XP</b> + combo 🔥</p><p>🟡 na segunda: <b>40 XP</b></p><p>Cada estande dá medalha 🥇🥈🥉</p></div><div class="bloco"><h3>Desafio do Júri</h3><p>Até 3 tentativas: 100% • 70% • 40%</p><p>Digitar: <b>não dá para colar</b></p><p>X = o seu número, aparece no topo</p></div></div><p class="grande-t">Níveis: 🎟️ Visitante → 🧪 Expositor → 🔬 Monitor → 🏅 Jurado → 🏆 Campeão da Feira</p>`,n:'No fim, cada aluno vê A, PA ou NA por indicador (A = 70% dos pontos ou mais; PA = 50% a 69%; NA = menos de 50%).'},
- {t:'Pode consultar!',h:`<p class="grande-t">📚 LMS: <b>senac-lms.pages.dev</b></p><ul class="big"><li>Erros no Python: UC05, aulas A43, A46 e A49</li><li>pandas e groupby: UC05, aulas A37 e A40</li><li>SELECT, GROUP BY, JOIN: UC08, Plantão da Vigilância</li><li>GRANT e REVOKE: UC08, aulas A47 e A61</li><li>No jogo: botão 📖 Consultar (resumo de cada assunto)</li></ul><p class="grande-t">🚫 IA não. As respostas vão direto para o professor.</p>`,n:'Consultar é estudar: o jogo até dá conquista para quem consulta. O que não pode é colar ou pedir para a IA.'},
+ {t:'Pode consultar!',h:`<p class="grande-t">📚 LMS: <b>senac-lms.pages.dev</b></p><ul class="big"><li>Erros no Python: UC05, aulas A43, A46 e A49</li><li>pandas e groupby: UC05, aulas A37 e A40</li><li>SELECT, GROUP BY, JOIN: UC08, Plantão da Vigilância</li><li>GRANT e REVOKE: UC08, aulas A47 e A61</li><li>Redes: vídeos do NIC.br (Forms de 05/11)</li><li>No jogo: botão 📖 Consultar (resumo de cada assunto)</li></ul><p class="grande-t">🚫 IA não. As respostas vão direto para o professor.</p>`,n:'Consultar é estudar: o jogo até dá conquista para quem consulta. O que não pode é colar ou pedir para a IA.'},
  {t:'Relembrando: erros no Python',h:`<div class="grade2"><pre class="cod g">if livros > 3     # SyntaxError
 print(livrso)     # NameError
 "3" + 1           # TypeError
@@ -516,10 +548,20 @@ REVOKE SELECT ON livros FROM leitor_7;  -- tirar
 
 CREATE TABLE livros_bkp AS SELECT * FROM livros;          -- backup
 INSERT INTO livros SELECT * FROM livros_bkp WHERE id = 7; -- restaurar</pre><p class="grande-t">Menor privilégio: cada um recebe só o que precisa.</p>`,n:'Backup não tem aula própria no LMS. Este slide e o Manual de BD (13/11) são a referência.'},
+ {t:'Relembrando: redes',h:`<div class="grade2"><div><ul class="big"><li><b>DHCP</b> entrega o IP (sem ele: 169.254.x.x)</li><li><b>DNS</b>: nome → IP</li><li><b>TCP</b> confirma • <b>UDP</b> é rápido</li><li><b>HTTPS</b> = HTTP + criptografia</li><li>IPv4 = 32 bits • IPv6 = 128 bits</li></ul></div><pre class="cod g">ping 8.8.8.8
+nslookup www.ufpr.br
+tracert www.ufpr.br
+
+Rede 10.0.5.0/24
+PCs: 10.0.5.1 a 10.0.5.254
+Broadcast: 10.0.5.255
+
+2001:0db8:0000:0000::0005
+→ 2001:db8::5</pre></div>`,n:'Exemplos diferentes do jogo e do Forms de 04/12. Em binário: some os pesos 128 64 32 16 8 4 2 1 onde tem 1.'},
  {t:'Bora jogar! 🎮',h:()=>`<p class="grande-t">Abra o link que o professor mandou (LMS / Teams).</p><p class="link-g">${esc(location.origin+location.pathname)}</p><p class="grande-t">Digite o <b>nome completo</b>. Se aparecer ⚠️ "sem envio", você abriu sem o link do professor.</p>`,n:'Mande o link com a chave (Área do professor → 🔑 Chave de envio e link dos alunos). Confira se cada aluno vê "☁️ envio ligado".'},
  {t:'🏆 Placar ao vivo',prof:1,h:()=>placarHTML(),n:'Clique em 🔄 para atualizar (lê o repositório). Mostra só nome e XP no projetor; a menção fica na Área do professor.'},
  {t:'Correção do Desafio do Júri',prof:1,h:()=>`<div class="grade2"><pre class="cod g">${esc(PROF.M.A)}</pre><pre class="cod g">${esc(PROF.M.B.map((b,k)=>`${k+1}) ${b}`).join('\n'))}</pre></div>`,n:'X é o número de cada aluno. Peça que um aluno explique cada linha antes de mostrar.'},
- {t:'O que cai sexta e sábado',h:`<div class="grade2"><div class="bloco"><h3>Sexta 27/11: Python</h3><p>Ind. 3: ler o erro, corrigir e testar</p><p>Ind. 4: pandas (shape, filtro, groupby) e gráfico</p></div><div class="bloco"><h3>Sábado 28/11: Banco de dados</h3><p>Ind. 5: SELECT, WHERE, GROUP BY, JOIN</p><p>Ind. 4: GRANT e REVOKE</p><p>Ind. 6: backup e restauração</p></div></div><p class="grande-t">Olhe o seu A / PA / NA: comece a revisão pelo NA.</p>`,n:'Feche perguntando qual pergunta foi a mais difícil. As 5 mais erradas estão na Área do professor.'}
+ {t:'Calendário das avaliações',h:`<div class="grade2"><div class="bloco"><h3>Sexta 27/11: Python</h3><p>Ind. 3: ler o erro, corrigir e testar</p><p>Ind. 4: pandas (shape, filtro, groupby) e gráfico</p></div><div class="bloco"><h3>Sábado 28/11: Banco de dados</h3><p>Ind. 5: SELECT, WHERE, GROUP BY, JOIN</p><p>Ind. 4: GRANT e REVOKE • Ind. 6: backup</p></div><div class="bloco"><h3>Quinta 03/12 e sexta 04/12: Redes/GPU</h3><p>Ind. 4: protocolos e serviços</p><p>Ind. 5: IPv4 e IPv6</p></div><div class="bloco"><h3>Depois: recuperação</h3><p>Para quem ficar PA ou NA</p></div></div><p class="grande-t">Olhe o seu A / PA / NA: comece a revisão pelo NA.</p>`,n:'Feche perguntando qual pergunta foi a mais difícil. As 5 mais erradas estão na Área do professor. A recuperação vem depois de 04/12.'}
 ];
 let SL=0,NOTAS=false;
 async function abrirApresentacao(){SL=0;const d=document.createElement('div');d.id='apres';document.body.appendChild(d);desenharSlide();document.addEventListener('keydown',teclaApres)}
